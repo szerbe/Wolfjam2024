@@ -11,8 +11,12 @@ public class Block : MonoBehaviour
         //'g' = Green = merge
         //'b' = black = obstacle (cannot overlap)
         //'c' = blue = character (subclass)
+        //'y' = key = win condition
         color = c;
     }
     
+    public static color(){
+        return color;
+    }
 
 }
