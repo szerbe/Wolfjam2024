@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using UnityEngine.Tilemaps;
 
 public class levelInit : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class levelInit : MonoBehaviour
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.SetActiveScene(newScene);
         GameObject gameObject = new GameObject();
-        gameObject.AddComponent<Camera>();
         createScene("level" + levelNum);
     }
 
@@ -35,6 +35,7 @@ public class levelInit : MonoBehaviour
         var redBlockTexture = Resources.Load<Texture2D>("Art/Tiles/redTile.png");
         var greenBlockTexture = Resources.Load<Texture2D>("Art/Tiles/greenTile.png");
         var wallBlockTexture = Resources.Load<Texture2D>("Art/Tiles/newWallBlock");
+        var yellowBlockTexture = Resources.Load<Texture2D>("Art/Tiles/tile2.png");
         Vector2 position;
         if(playerTexture == null){
             Debug.Log("Player texture failed to load");
@@ -55,7 +56,7 @@ public class levelInit : MonoBehaviour
                 switch(scene[x, y]){
                     case('E'):
                         break;
-                    case('W'):
+                    case('B'):
                         gameObject = new GameObject();
                         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
                         spriteRenderer.sprite = Sprite.Create(wallBlockTexture, new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
@@ -66,7 +67,7 @@ public class levelInit : MonoBehaviour
                         gameObject.transform.position = position;
                         gameObject.tag = "Wall";
                         break;
-                    case('B'):
+                    case('C'):
                         gameObject = new GameObject();
                         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
                         spriteRenderer.sprite = Sprite.Create(playerTexture, new Rect(0, 0, playerTexture.width, playerTexture.height), new Vector2(0.5f, 0.5f), 64);
@@ -104,6 +105,18 @@ public class levelInit : MonoBehaviour
                         gameObject.transform.position = position;
                         gameObject.AddComponent<Block>();
                         gameObject.tag = "GreenBlock";
+                        break;
+                    case('Y'):
+                        gameObject = new GameObject();
+                        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = Sprite.Create(yellowBlockTexture, new Rect(0, 0, yellowBlockTexture.width, yellowBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
+                        position = gameObject.transform.position;
+                        position.x = x;
+                        position.y = y;
+                        Debug.Log("Creating yellow at" + x + ", " + y);
+                        gameObject.transform.position = position;
+                        gameObject.AddComponent<goldenTiles>();
+                        gameObject.tag = "YellowBlock";
                         break;
                 }
             }
