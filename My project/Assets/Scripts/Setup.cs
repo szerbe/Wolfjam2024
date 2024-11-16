@@ -23,14 +23,28 @@ public class Setup
     }
     
 
-    public void rotate(){
+    public void rotateR(){
         for(int i = 0; i < character.Capacity()){
-
+            int[] c = scene[character[i][0],character[i][1]].near();
+            for(int j = 0; j < 3; j++){
+                scene[character[i][0],character[i][1]].change(j+1,1);
+            }
+            if(c[4]==1){
+                scene[character[i][0],character[i][1]].change(0,1);
+            }
         }
     }
 
-    public void rotateR(){
-        
+    public void rotateL(){
+        for(int i = 0; i < character.Capacity()){
+            int[] c = scene[character[i][0],character[i][1]].near();
+            for(int j = 4; j > 0; j++){
+                scene[character[i][0],character[i][1]].change(j-1,1);
+            }
+            if(c[0]==1){
+                scene[character[i][0],character[i][1]].change(4,1);
+            }
+        }
     }
 
     public void move(){
