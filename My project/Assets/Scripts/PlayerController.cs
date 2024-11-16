@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
                 this.GetComponent<Block>().attach("UP", "redTile.png");
             }
 
-            Debug.Log("Trying to create a sprite");
+            // Debug.Log("Trying to create a sprite");
         }
         
 
