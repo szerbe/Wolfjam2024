@@ -18,21 +18,21 @@ public class PlayerController : MonoBehaviour
         char rotate = 'N';
         bool confirm = false;
         //Move left
-        if(canMove('l') && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))){
+        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && canMove('l')){
             horizontal = -1.0f;
         }
         //Move right
-        if(canMove('r') && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))){
+        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && canMove('r')){
             horizontal = 1.0f;
         }
 
         //Move up
-        if(canMove('u') && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))){
+        if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && canMove('u')){
             vertical = 1.0f;
         }
 
         //Move down
-        if(canMove('d') && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))){
+        if(canMove('d') && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && canMove('u')){
             vertical = -1.0f;
         }
 
@@ -106,23 +106,29 @@ public class PlayerController : MonoBehaviour
         for(int i = 0; i < player.Count; i++){
             Vector2 location = player[i];
             if(direction.Equals('l')){
+                Debug.Log("Moving Left!");
                 location.x -= 1;
             }
             if(direction.Equals('r')){
+                Debug.Log("Moving Right!");
                 location.x += 1;
             }
             if(direction.Equals('u')){
+                Debug.Log("Moving Up!");
                 location.y += 1;
             }
             if(direction.Equals('d')){
+                Debug.Log("Moving Down");
                 location.y -= 1;
             }
             for(int j = 0; j < walls.Count; j++){
                 if(walls.Contains(location)){
+                    Debug.Log("Cannot move");
                     return false;
                 }
             }
         }
+        Debug.Log("Successfully Moved!");
         return true;
     }
 
