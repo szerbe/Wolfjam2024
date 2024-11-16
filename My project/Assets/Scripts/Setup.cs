@@ -52,7 +52,7 @@ public class Setup {
                 if(scene[i,j].Equals('C')){
                     character.Add(new int[]{i,j});
                     i = scene.GetLength(0);
-                    j = scene.GetLength(1)
+                    j = scene.GetLength(1);
                 }
             }  
         }
