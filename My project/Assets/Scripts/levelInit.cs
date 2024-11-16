@@ -1,14 +1,32 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class level1Init : MonoBehaviour
+public class levelInit : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public level1Init(){
-        //Setup lvl1 = new Setup();
-        //input 2d char array
-=======
-    void Start(){
+    
+    private char[,] scene;
+    private int[,] key;
+    private Vector2 position = Vector2.zero;
 
->>>>>>> Stashed changes
+    public levelInit(int levelNum){
+        createScene(levelNum);
+        createKey(levelNum);
+    }
+
+    void Start(){
+        //Create scene
+        //Create key
+        SceneManager.CreateScene("level");
+        // Setup setup = new Setup(scene, key, position);
+    }
+
+    int[] createKey(int levelNum){
+        return new int[1];
+    }
+
+    int[] createScene(int levelNum){
+        return new int[1];
     }
 }

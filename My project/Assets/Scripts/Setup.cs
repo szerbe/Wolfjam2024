@@ -9,63 +9,40 @@ public class Setup
 {
     private char[,] scene;
     private int[,] key;
-    private ArrayList character;
-    private int size = 1; //character size
+    // private ArrayList character;
+    // private int size = 1; //character size
     
-    //public static main(string[] args){
-    //
-    //}
+    // //public static main(string[] args){
+    // //
+    // //}
 
-    public Setup(char[,] level, int[,] key, int[]character){
-        scene = level;
-        key = key;
-        character.Add(character);
-    }
+    // public Setup(char[][] level, int[][] key, int[]character){
+    //     scene = level;
+    //     key = key;
+    //     character.Add(character);
+    // }
     
 
-    public void rotateR(){
-        for(int i = 0; i < character.Capacity()){
-            int[] c = scene[character[i][0],character[i][1]].near();
-            for(int j = 0; j < 3; j++){
-                scene[character[i][0],character[i][1]].change(j+1,c[j]);
-            }
-            scene[character[i][0],character[i][1]].change(0,c[4]);
-        }
-    }
 
-    public void rotateL(){
-        for(int i = 0; i < character.Capacity()){
-            int[] c = scene[character[i][0],character[i][1]].near();
-            for(int j = 4; j > 0; j++){
-                scene[character[i][0],character[i][1]].change(j-1,c[j]);
-            }
-            scene[character[i][0],character[i][1]].change(4,c[0]);
-        }
-    }
+    // public bool isKey(){
+    //     if(size == key.getLength(0)) && checkKey()){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    public void move(){
+    // public bool checkKey(){
+    //     for(int i = 0; i < key.GetLength(0)){
+    //         for(int j = 0; j < key.GetLength(1)){
+    //             if(scene[i][j].color().Equals('y')){
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    }
-
-    public bool isKey(){
-        if(size == key.getLength(0)) && checkKey()){
-            return true;
-        }
-        return false;
-    }
-
-    public bool checkKey(){
-        for(int i = 0; i < key.GetLength(0)){
-            for(int j = 0; j < key.GetLength(1)){
-                if(scene[i][j].color().Equals('y')){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public char[][] getScene(){
-        return scene;
-    }
+    // public char[][] getScene(){
+    //     return scene;
+    // }
 }

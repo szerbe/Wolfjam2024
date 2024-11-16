@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
-public class goldenTiles : MonoBehaviour
+public class goldenTiles : TileBase
 {
     private GameObject playerObj = null;
 
@@ -11,8 +12,10 @@ public class goldenTiles : MonoBehaviour
         }
     }
     void Update(){
-        if(playerObj.transform.position == transform.position){
-            SceneManager.LoadScene("level1");
+        if(playerObj.transform.position.Equals(Vector2.zero)){
+
         }
+            
+            SceneManager.LoadScene("level1");
     }
 }
