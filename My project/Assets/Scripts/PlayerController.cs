@@ -18,21 +18,21 @@ public class PlayerController : MonoBehaviour
         char rotate = 'N';
         bool confirm = false;
         //Move left
-        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && canMove('l')){
+        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && Block.canMove('l')){
             horizontal = -1.0f;
         }
         //Move right
-        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && canMove('r')){
+        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && Block.canMove('r')){
             horizontal = 1.0f;
         }
 
         //Move up
-        if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && canMove('u')){
+        if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && Block.canMove('u')){
             vertical = 1.0f;
         }
 
         //Move down
-        if(canMove('d') && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && canMove('u')){
+        if((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && Block.canMove('d')){
             vertical = -1.0f;
         }
 
@@ -100,37 +100,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool canMove(char direction){
-        List<Vector2> player = Block.getAttachedBlocks();
-        List<Vector2> walls = Block.getWalls();
-        for(int i = 0; i < player.Count; i++){
-            Vector2 location = player[i];
-            if(direction.Equals('l')){
-                Debug.Log("Moving Left!");
-                location.x -= 1;
-            }
-            if(direction.Equals('r')){
-                Debug.Log("Moving Right!");
-                location.x += 1;
-            }
-            if(direction.Equals('u')){
-                Debug.Log("Moving Up!");
-                location.y += 1;
-            }
-            if(direction.Equals('d')){
-                Debug.Log("Moving Down");
-                location.y -= 1;
-            }
-            for(int j = 0; j < walls.Count; j++){
-                if(walls.Contains(location)){
-                    Debug.Log("Cannot move");
-                    return false;
-                }
-            }
-        }
-        Debug.Log("Successfully Moved!");
-        return true;
-    }
+    
 
     bool canRotate(char direction){
         List<Vector2> player = Block.getAttachedBlocks();
