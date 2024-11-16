@@ -87,16 +87,22 @@ public class PlayerController : MonoBehaviour
     }
     
     //Rotates the player in a direction, Q for counterclockwise, E for clockwise
-    void rotateDir(char rotate){
+    public void rotateDir(char rotate){
         if(rotate == 'N'){
             return;
         }
         else if(rotate == 'Q' && Block.canRotate('l')){
             transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
+            int XPos = (int) Math.Round(transform.position.x);
+            int YPos = (int) Math.Round(transform.position.y);
+            transform.position = new Vector2(XPos, YPos);
             return;
         }
         else if(rotate == 'E' && Block.canRotate('r')){
             transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
+            int XPos = (int) Math.Round(transform.position.x);
+            int YPos = (int) Math.Round(transform.position.y);
+            transform.position = new Vector2(XPos, YPos);
             return;
         }
     }

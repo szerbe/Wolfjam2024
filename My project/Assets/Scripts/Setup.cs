@@ -33,7 +33,8 @@ public class Setup {
         int j = 0;
         scene = new char[Convert.ToInt32(sc[0]), Convert.ToInt32(sc[2])];
         Debug.Log(sc);
-        sc = sc.Substring(3);
+        sc = sc.Substring(sc.IndexOf('*') + 1);
+        Debug.Log(sc);
         foreach(char c in sc){
             if(c.Equals(':')){
                 j++;

@@ -16,6 +16,8 @@ public class Block : MonoBehaviour
     private static List<Vector2> player = Block.getAttachedBlocks();
     private static List<Vector2> walls = Block.getWalls();
 
+    private static GameObject rotationPoint;
+
     public Block(char c){
         up = false;
         down = false;
@@ -28,6 +30,7 @@ public class Block : MonoBehaviour
         //'Y' = key = win condition
         //'E' = Empty = no tile
         color = c;
+        rotationPoint = GameObject.FindGameObjectWithTag("Player");
     }
     
     
@@ -60,11 +63,9 @@ public class Block : MonoBehaviour
         up = u;
     }
 
-    void Update(){
-        if(this.tag == "Player"){
-            player = Block.getAttachedBlocks();
-            walls = Block.getWalls();
-        }
+    public static void UpdateTags(){
+        player = Block.getAttachedBlocks();
+        walls = Block.getWalls();
     }
 
     public static List<Vector2> getAttachedBlocks(){
@@ -260,20 +261,20 @@ public class Block : MonoBehaviour
     }
 
     public static bool canRotate(char direction){
-        int cosX = 0;
-        int sinX = 1;
-        if(direction.Equals('r')){
-            sinX = -1;
+        GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
+        gameObject.GetComponent<PlayerController>().rotateDir(direction);
+        if(direction == 'Q'){
+            direction = 'E';
         }
-        //Debug.Log(cosX + ", " + sinX);
-        Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
-
-        for(int i = 0; i < player.Count; i++){
-            Vector2 location = player[i];
-            location = new Vector2((float)Math.Round(matrix[0].x*player[i].x + matrix[0].y*player[i].y), (float)Math.Round(matrix[1].x*player[i].x + matrix[1].y*player[i].y));
-            Debug.Log("Rotating: "+location.x + ", " + location.y);
+        else{
+            direction = 'Q';
+        }
+        List<Vector2> curr = Block.getAttachedBlocks();
+        foreach(Vector2 pos in curr){
             for(int j = 0; j < walls.Count; j++){
-                if(walls.Contains(location)){
+                if(walls.Contains(pos)){
+                    Debug.Log("Cannot move");
+                    gameObject.GetComponent<PlayerController>().rotateDir(direction);
                     return false;
                 }
             }

@@ -18,6 +18,7 @@ public class levelInit : MonoBehaviour
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.SetActiveScene(newScene);
         GameObject gameObject = new GameObject();
+        gameObject.AddComponent<levelInit>();
         createScene("level" + levelNum);
     }
 
@@ -25,6 +26,10 @@ public class levelInit : MonoBehaviour
         //Create scene
         //Create key
         // Setup setup = new Setup(scene, key, position);
+    }
+
+    void Update(){
+        Block.UpdateTags();
     }
 
     void createScene(String fileName){
@@ -115,7 +120,6 @@ public class levelInit : MonoBehaviour
                         position.y = -y;
                         Debug.Log("Creating yellow at" + x + ", " + y);
                         gameObject.transform.position = position;
-                        gameObject.AddComponent<goldenTiles>();
                         gameObject.tag = "YellowBlock";
                         break;
                 }
