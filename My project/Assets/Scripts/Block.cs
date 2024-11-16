@@ -68,6 +68,17 @@ public class Block : MonoBehaviour
         }
         return positions;
     }
+
+    public static List<Vector2> getWalls(){
+        List<Vector2> positions = null;
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Wall");
+        foreach(GameObject obj in objs){
+            Debug.Log(obj.tag);
+            Debug.Log(obj.transform.position.x + ", " + obj.transform.position.y);
+            positions.Add(obj.transform.position);
+        }
+        return positions;
+    }
     /* Attaches another block to this
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png

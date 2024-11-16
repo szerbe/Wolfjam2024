@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,7 +50,11 @@ public class PlayerController : MonoBehaviour
 
         //Confirm choices (level select, attachment, removal)
         if(Input.GetKeyDown(KeyCode.Return)){
-            confirm = true;
+            // confirm = true;
+            List<Vector2> pos = Block.getWalls();
+            foreach(Vector2 wall in pos){
+                Debug.Log(wall.x + ", " + wall.y);
+            }
         }
         //Spawn more tiles (debug)
         if(Input.GetKeyDown(KeyCode.P)){
@@ -65,7 +70,7 @@ public class PlayerController : MonoBehaviour
             if(!(this.GetComponent<Block>().getUp())){
                 this.GetComponent<Block>().attach("UP", "redTile.png");
             }
-            
+
             Debug.Log("Trying to create a sprite");
         }
         
@@ -76,6 +81,7 @@ public class PlayerController : MonoBehaviour
         position.x = position.x + horizontal;
         position.y = position.y + vertical;
         transform.position = position;
+
 
         //Does actions that require confirming
         if(confirm){
