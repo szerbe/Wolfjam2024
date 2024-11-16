@@ -46,11 +46,11 @@ public class Setup {
                 Debug.Log(c);
             }
         }
-
-        for(i = 0; i < scene.GetLength(0); i++){
-            for(j = 0; j < scene.GetLength(1); j++){
+        
+        for(int i = 0; i < scene.GetLength(0); i++){
+            for(int j = 0; j < scene.GetLength(1); j++){
                 if(scene[i,j].Equals('C')){
-                    character.Add(new int[]{i,j});
+                    character.Add(new int[i,j]);
                     i = scene.GetLength(0);
                     j = scene.GetLength(1);
                 }
@@ -70,64 +70,63 @@ public class Setup {
     //         }
     //     }
     // }
+    public bool canMove(char direction){
+        char[,] player = scene;
+        for(int i = 0; i < character.Count; i++){
+            int[] location = character[i];
+            if(direction.Equals('l')){
+                Debug.Log("Moving Left!");
+                location[0] -= 1;
+            }
+            if(direction.Equals('r')){
+                Debug.Log("Moving Right!");
+                location[0] += 1;
+            }
+            if(direction.Equals('u')){
+                Debug.Log("Moving Up!");
+                location[1] += 1;
+            }
+            if(direction.Equals('d')){
+                Debug.Log("Moving Down");
+                location[1] -= 1;
+            }
+            char color = scene[location[0],location[1]];
+            if(color.Equals('R')){
+                player[location[0],location[1]] = 'B';
+                player[character[i][0], character[i][1]] = 'E';
+            }
+            if(color.Equals('B')||color.Equals('R')){
+                return false;
+            }
+            if(color.Equals('G')){
+                player[location[0],location[1]] = 'C';
+            }
+        }
+        scene = player;
+        Debug.Log("Successfully Moved!");
+        return true;
+    }
+
+    public bool canRotate(char direction){
+        int cosX = 0;
+        int sinX = 1;
+        if(direction.Equals('r')){
+            sinX = -1;
+        }
+        //Debug.Log(cosX + ", " + sinX);
+        int[,] matrix = {{cosX, -sinX}, {sinX, cosX}};
+
+        List<int[]> player = scene;
+        for(int i = 0; i < character.Count; i++){
+            int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*player[i][0]*blockWidth + matrix[1,1]*player[i][1]*blockHeight};
+            Debug.Log("Rotating: "+location[0] + ", " + location[1]);
+            if(scene[location[0],location[1]].Equals('B')){
+                return false;
+            }
+        }
+        return true;
+    }
     
-    // public bool canMove(char direction){
-    //     char[,] player = scene;
-    //     for(int i = 0; i < character.Count; i++){
-    //         int[] location = character[i];
-    //         if(direction.Equals('l')){
-    //             Debug.Log("Moving Left!");
-    //             location[0] -= 1;
-    //         }
-    //         if(direction.Equals('r')){
-    //             Debug.Log("Moving Right!");
-    //             location[0] += 1;
-    //         }
-    //         if(direction.Equals('u')){
-    //             Debug.Log("Moving Up!");
-    //             location[1] += 1;
-    //         }
-    //         if(direction.Equals('d')){
-    //             Debug.Log("Moving Down");
-    //             location[1] -= 1;
-    //         }
-    //         char color = scene[location[0],location[1]];
-    //         if(color.Equals('R')){
-    //             player[location[0],location[1]] = 'B';
-    //             player[character[i][0], character[i][1]] = 'E';
-    //         }
-    //         if(color.Equals('B')||color.Equals('R')){
-    //             return false;
-    //         }
-    //         if(color.Equals('G')){
-    //             player[location[0],location[1]] = 'C';
-    //         }
-    //     }
-    //     scene = player;
-    //     Debug.Log("Successfully Moved!");
-    //     return true;
-    // }
-
-    // public bool canRotate(char direction){
-    //     int cosX = 0;
-    //     int sinX = 1;
-    //     if(direction.Equals('r')){
-    //         sinX = -1;
-    //     }
-    //     //Debug.Log(cosX + ", " + sinX);
-    //     int[,] matrix = {{cosX, -sinX}, {sinX, cosX}};
-
-    //     char[,] player = scene;
-    //     for(int i = 0; i < character.Count; i++){
-    //         int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*character[i][0]*blockWidth + matrix[1,1]*character[i][1]*blockHeight};
-    //         Debug.Log("Rotating: "+location[0] + ", " + location[1]);
-    //         if(scene[location[0],location[1]].Equals('B')){
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
-
 
     // public bool checkKey(){
     //     int matches = 0;
@@ -142,14 +141,14 @@ public class Setup {
     // }
 
     public bool isKey(){
-        if((character.Count == key.GetLength(0)) && checkKey()){
+        if(character.Count == key.GetLength(0)) && checkKey()){
             return true;
         }
         return false;
     }
     public bool checkKey(){
-        for(int i = 0; i < key.GetLength(0); i++){
-            for(int j = 0; j < key.GetLength(1); j++){
+        for(int i = 0; i < key.GetLength(0)){
+            for(int j = 0; j < key.GetLength(1)){
                 if(scene[i,j].Equals('c')){
                     return true;
                 }

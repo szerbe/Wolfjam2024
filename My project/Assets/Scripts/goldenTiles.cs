@@ -2,9 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class goldenTiles : TileBase
+public class goldenTiles : MonoBehaviour
 {
     private GameObject playerObj = null;
+
+    public goldenTiles(){
+        
+    }
 
     void Start(){
         if(playerObj == null){
