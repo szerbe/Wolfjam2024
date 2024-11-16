@@ -47,10 +47,10 @@ public class Setup {
             }
         }
         
-        for(int i = 0; i < scene.GetLength(0); i++){
-            for(int j = 0; j < scene.GetLength(1); j++){
+        for(i = 0; i < scene.GetLength(0); i++){
+            for(j = 0; j < scene.GetLength(1); j++){
                 if(scene[i,j].Equals('C')){
-                    character.Add(new int[i,j]);
+                    character.Add(new int[]{i,j});
                     i = scene.GetLength(0);
                     j = scene.GetLength(1);
                 }
@@ -142,14 +142,14 @@ public class Setup {
     // }
 
     public bool isKey(){
-        if(character.Count == key.GetLength(0)) && checkKey()){
+        if(character.Count == key.GetLength(0) && checkKey()){
             return true;
         }
         return false;
     }
     public bool checkKey(){
-        for(int i = 0; i < key.GetLength(0)){
-            for(int j = 0; j < key.GetLength(1)){
+        for(int i = 0; i < key.GetLength(0); i++){
+            for(int j = 0; j < key.GetLength(1); j++){
                 if(scene[i,j].Equals('c')){
                     return true;
                 }
