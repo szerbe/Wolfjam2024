@@ -59,8 +59,12 @@ public class Block : MonoBehaviour
     public static List<Vector2> getAttachedBlocks(){
         List<Vector2> positions = null;
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Attached");
+        GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject obj in objs){
             positions.Add(obj.transform.position);
+        }
+        foreach(GameObject play in player){
+            positions.Add(play.transform.position);
         }
         return positions;
     }
