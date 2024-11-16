@@ -10,20 +10,28 @@ public class PlayerController : MonoBehaviour
         float horizontal = 0.0f;
         float vertical = 0.0f;
         char rotate = 'N';
-        if(Input.GetKeyDown(KeyCode.LeftArrow)){
+        GameObject rotationPoint = GameObject.FindWithTag("Player");
+        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
             horizontal = -1.0f;
         }
-        if(Input.GetKeyDown(KeyCode.RightArrow)){
+        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
             horizontal = 1.0f;
         }
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){
             vertical = 1.0f;
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
+        if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
             vertical = -1.0f;
         }
         if(Input.GetKeyDown(KeyCode.Q)){
             rotate = 'Q';
+            rotateDir(rotate);
+        }
+        if(Input.GetKeyDown(KeyCode.E)){
+            rotate = 'E';
+            rotateDir(rotate);
+        }
+        if(Input.GetKeyDown(KeyCode.P)){
             if(!(this.GetComponent<Block>().getDown())){
                 this.GetComponent<Block>().attach(0, "blueTile.png");
                 this.GetComponent<Block>().attach(1, "greenTile.png");
@@ -31,9 +39,6 @@ public class PlayerController : MonoBehaviour
                 this.GetComponent<Block>().attach(3, "tile2.png");
             }
             Debug.Log("Trying to create a sprite");
-        }
-        if(Input.GetKeyDown(KeyCode.E)){
-            rotate = 'E';
         }
         Vector2 position = transform.position;
         position.x = position.x + horizontal;
@@ -45,7 +50,11 @@ public class PlayerController : MonoBehaviour
             if(rotate == 'N'){
                 return;
             }
-            if(rotate == 'c'){
+            if(rotate == 'Q'){
+                transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
+            }
+            if(rotate == 'E'){
+                transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
             }
         }
     }
