@@ -1,4 +1,4 @@
-20 13 *
+20 13*
 B B B B B B B B B B B B B B B B B B B B:
 B E E E E E E E E E E E E E E E E E E B:
 B E E E E E E E E E E E E E E E E E E B:
