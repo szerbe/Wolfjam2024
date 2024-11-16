@@ -16,7 +16,7 @@ public class Block : MonoBehaviour
         color = c;
     }
     
-    public static color(){
+    public static char color(){
         return color;
     }
 

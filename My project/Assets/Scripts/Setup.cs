@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Block : MonoBehaviour
+public class Setup
 {
     private char[30][30] scene;
     private int[10][2] key;
@@ -22,11 +22,15 @@ public class Block : MonoBehaviour
     }
     
 
-    public static rotateL(){
+    public void rotateL(){
 
     }
 
-    public static rotateR(){
+    public void rotateR(){
+        
+    }
+
+    public void move(){
 
     }
 

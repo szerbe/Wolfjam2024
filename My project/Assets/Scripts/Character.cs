@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Character : Block
 {
-    public static color(){
+    public static char color(){
         return 'c';
     }
 }
