@@ -57,7 +57,7 @@ public class Block : MonoBehaviour
     }
 
     public static List<Vector2> getAttachedBlocks(){
-        List<Vector2> positions = null;
+        List<Vector2> positions = new List<Vector2>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Attached");
         GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject obj in objs){
@@ -70,11 +70,11 @@ public class Block : MonoBehaviour
     }
 
     public static List<Vector2> getWalls(){
-        List<Vector2> positions = null;
+        List<Vector2> positions = new List<Vector2>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Wall");
         foreach(GameObject obj in objs){
-            Debug.Log(obj.tag);
-            Debug.Log(obj.transform.position.x + ", " + obj.transform.position.y);
+            // Debug.Log(obj.tag);
+            // Debug.Log(obj.transform.position.x + ", " + obj.transform.position.y);
             positions.Add(obj.transform.position);
         }
         return positions;
