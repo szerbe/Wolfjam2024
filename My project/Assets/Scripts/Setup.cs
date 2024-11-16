@@ -118,6 +118,7 @@ public class Setup {
         for (int i = 0; i < scene.GetLength(0); i++) {
             for (int j = 0; j < scene.GetLength(1); j++) {
                 GameObject temp = Instantiate(Block(scene[i,j]), new Vector3(j * blockWidth, i * blockHeight, 0), Quaternion.identity) as GameObject;
+                //format: Instiantiate(GameObject, Vector, Quaternion.identity)
             }
         }
     }
