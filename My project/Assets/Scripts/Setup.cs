@@ -70,6 +70,7 @@ public class Setup {
     //         }
     //     }
     // }
+    
     public bool canMove(char direction){
         char[,] player = scene;
         for(int i = 0; i < character.Count; i++){
@@ -116,9 +117,9 @@ public class Setup {
         //Debug.Log(cosX + ", " + sinX);
         int[,] matrix = {{cosX, -sinX}, {sinX, cosX}};
 
-        List<int[]> player = scene;
+        char[,] player = scene;
         for(int i = 0; i < character.Count; i++){
-            int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*player[i][0]*blockWidth + matrix[1,1]*player[i][1]*blockHeight};
+            int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*character[i][0]*blockWidth + matrix[1,1]*character[i][1]*blockHeight};
             Debug.Log("Rotating: "+location[0] + ", " + location[1]);
             if(scene[location[0],location[1]].Equals('B')){
                 return false;
@@ -126,7 +127,7 @@ public class Setup {
         }
         return true;
     }
-    
+
 
     // public bool checkKey(){
     //     int matches = 0;
