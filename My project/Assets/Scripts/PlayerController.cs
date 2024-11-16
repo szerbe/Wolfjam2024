@@ -18,22 +18,30 @@ public class PlayerController : MonoBehaviour
         char rotate = 'N';
         bool confirm = false;
         //Move left
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
-            horizontal = -1.0f;
+        if(canMove('l')){
+            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
+                horizontal = -1.0f;
+            }
         }
         //Move right
-        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
-            horizontal = 1.0f;
+        if(canMove('r')){
+            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
+                horizontal = 1.0f;
+            }
         }
 
         //Move up
-        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){
-            vertical = 1.0f;
+        if(canMove('u')){
+            if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){
+                vertical = 1.0f;
+            }
         }
 
         //Move down
-        if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
-            vertical = -1.0f;
+        if(canMove('d')){
+            if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
+                vertical = -1.0f;
+            }
         }
 
         //Rotate counterclockwise
@@ -87,16 +95,64 @@ public class PlayerController : MonoBehaviour
     
     //Rotates the player in a direction, Q for counterclockwise, E for clockwise
     void rotateDir(char rotate){
-            if(rotate == 'N'){
-                return;
+        if(rotate == 'N'){
+            return;
+        }
+        else if(rotate == 'Q'){ //&& canRotate('l')
+            transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
+            return;
+        }
+        else if(rotate == 'E'){ //&& canRotate('r')
+            transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
+            return;
+        }
+    }
+
+    bool canMove(char direction){
+        List<Vector2> player = Block.getAttachedBlocks();
+        List<Vector2> walls = Block.getWalls();
+        for(int i = 0; i < player.Count; i++){
+            Vector2 location = player[i];
+            if(direction.Equals('l')){
+                location.x -= 1;
             }
-            else if(rotate == 'Q'){
-                transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
-                return;
+            if(direction.Equals('r')){
+                location.x += 1;
             }
-            else if(rotate == 'E'){
-                transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
-                return;
+            if(direction.Equals('u')){
+                location.y += 1;
+            }
+            if(direction.Equals('d')){
+                location.y -= 1;
+            }
+            for(int j = 0; j < walls.Capacity; j++){
+                if(walls.Contains(location)){
+                    return false;
+                }
             }
         }
+        return true;
+    }
+
+    /*bool canRotate(char direction){
+        List<Vector2> player = Block.getAttachedBlocks();
+        List<Vector2> walls = Block.getWalls();
+        double theta = Math.PI/2;
+        if(direction.Equals('r')){
+            theta = -Math.PI/2;
+        }
+        float cosX = (float)Math.Cos(theta);
+        float sinX = (float)Math.Sin(theta);
+        Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
+
+        for(int i = 0; i < player.Capacity; i++){
+            Vector2 location = <matrix[0].x*player[i].x + matrix[0].y*player[i].y, matrix[1].x*player[i].x + matrix[1].y*player[i].y>
+            for(int j = 0; j < walls.Capacity; j++){
+                if(walls.Contains(location)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }*/
 }
