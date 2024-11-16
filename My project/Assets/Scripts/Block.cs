@@ -21,12 +21,12 @@ public class Block : MonoBehaviour
         down = false;
         left = false;
         right = false;
-        //'r' = Red = subtract
-        //'g' = Green = merge
-        //'b' = Black = obstacle (cannot overlap)
-        //'c' = Blue = character (subclass)
-        //'y' = key = win condition
-        //'e' = Empty = no tile
+        //'R' = Red = subtract
+        //'G' = Green = merge
+        //'B' = Black = obstacle (cannot overlap)
+        //'C' = Blue = character (subclass)
+        //'Y' = key = win condition
+        //'E' = Empty = no tile
         color = c;
     }
     
