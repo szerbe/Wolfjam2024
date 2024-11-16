@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         //Confirm choices (level select, attachment, removal)
         if(Input.GetKeyDown(KeyCode.Return)){
-            Setup s = new Setup("level1");
+            // confirm = true;
         }
         //Spawn more tiles (debug)
         if(Input.GetKeyDown(KeyCode.P)){
@@ -63,9 +63,9 @@ public class PlayerController : MonoBehaviour
             if(!(this.GetComponent<Block>().getLeft())){
                 this.GetComponent<Block>().attach("LEFT", "tile2.png");
             }
-            // if(!(this.GetComponent<Block>().getUp())){
-            //     this.GetComponent<Block>().attach("UP", "redTile.png");
-            // }
+            if(!(this.GetComponent<Block>().getUp())){
+                this.GetComponent<Block>().attach("UP", "redTile.png");
+            }
 
             // Debug.Log("Trying to create a sprite");
         }
