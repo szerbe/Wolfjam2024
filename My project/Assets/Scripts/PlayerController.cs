@@ -1,16 +1,21 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameObject rotationPoint = null;
     void Start(){
+        if(rotationPoint == null){
+            rotationPoint = GameObject.FindGameObjectWithTag("Player");
+        }
     }
     void Update(){
         float horizontal = 0.0f;
         float vertical = 0.0f;
         char rotate = 'N';
-        GameObject rotationPoint = GameObject.FindWithTag("Player");
+        bool confirm = false;
         //Move left
         if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
             horizontal = -1.0f;
@@ -44,22 +49,26 @@ public class PlayerController : MonoBehaviour
 
         //Confirm choices (level select, attachment, removal)
         if(Input.GetKeyDown(KeyCode.Return)){
-            
-            var GameObject = new GameObject();
-            var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
-            var texture = Resources.Load<Texture2D>("Art/Tiles/blueTile.png");
-            SpriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 64);
+            confirm = true;
         }
         //Spawn more tiles (debug)
         if(Input.GetKeyDown(KeyCode.P)){
             if(!(this.GetComponent<Block>().getDown())){
                 this.GetComponent<Block>().attach("DOWN", "blueTile.png");
+            }
+            if(!(this.GetComponent<Block>().getRight())){
                 this.GetComponent<Block>().attach("RIGHT", "greenTile.png");
-                this.GetComponent<Block>().attach("UP", "redTile.png");
+            }
+            if(!(this.GetComponent<Block>().getLeft())){
                 this.GetComponent<Block>().attach("LEFT", "tile2.png");
             }
+            if(!(this.GetComponent<Block>().getUp())){
+                this.GetComponent<Block>().attach("UP", "redTile.png");
+            }
+            
             Debug.Log("Trying to create a sprite");
         }
+        
 
         //Calculate movement and move
 
@@ -68,8 +77,14 @@ public class PlayerController : MonoBehaviour
         position.y = position.y + vertical;
         transform.position = position;
 
-        //Rotates the player in a direction, Q for counterclockwise, E for clockwise
-        void rotateDir(char rotate){
+        //Does actions that require confirming
+        if(confirm){
+            //stuff goes here
+        }
+    }
+    
+    //Rotates the player in a direction, Q for counterclockwise, E for clockwise
+    void rotateDir(char rotate){
             if(rotate == 'N'){
                 return;
             }
@@ -82,5 +97,4 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-    }
 }

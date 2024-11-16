@@ -29,10 +29,31 @@ public class Block : MonoBehaviour
         return color;
     }
 
-    public Boolean getDown(){
+    public bool getDown(){
         return down;
     }
+    public bool getRight(){
+        return right;
+    }
+    public bool getLeft(){
+        return left;
+    }
+    public bool getUp(){
+        return up;
+    }
 
+    public void setDown(bool d){
+        down = d;
+    }
+    public void setLeft(bool l){
+        left = l;
+    }
+    public void setRight(bool r){
+        right = r;
+    }
+    public void setUp(bool u){
+        up = u;
+    }
     /* Attaches another block to this
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png
@@ -54,6 +75,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.GetComponent<Block>().setUp(true);
 
             }
             else {
@@ -72,6 +94,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.GetComponent<Block>().setLeft(true);
 
             }
             else {
@@ -90,6 +113,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.GetComponent<Block>().setDown(true);
 
             }
             else {
@@ -108,7 +132,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-
+                GameObject.GetComponent<Block>().setRight(true);
             }
             else {
                 Debug.Log("Texture Not Found");
