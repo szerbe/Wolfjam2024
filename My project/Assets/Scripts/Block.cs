@@ -260,17 +260,18 @@ public class Block : MonoBehaviour
     }
 
     public static bool canRotate(char direction){
-        double theta = 90;
+        int cosX = 0;
+        int sinX = 1;
         if(direction.Equals('r')){
-            theta = -90;
+            sinX = -1;
         }
-        float cosX = (float)Math.Cos(theta);
-        float sinX = (float)Math.Sin(theta);
+        //Debug.Log(cosX + ", " + sinX);
         Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
 
         for(int i = 0; i < player.Count; i++){
             Vector2 location = player[i];
-            location = new Vector2(matrix[0].x*player[i].x + matrix[0].y*player[i].y, matrix[1].x*player[i].x + matrix[1].y*player[i].y);
+            location = new Vector2((float)Math.Round(matrix[0].x*player[i].x + matrix[0].y*player[i].y), (float)Math.Round(matrix[1].x*player[i].x + matrix[1].y*player[i].y));
+            Debug.Log("Rotating: "+location.x + ", " + location.y);
             for(int j = 0; j < walls.Count; j++){
                 if(walls.Contains(location)){
                     return false;
