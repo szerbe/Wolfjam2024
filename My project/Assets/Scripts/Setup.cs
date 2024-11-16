@@ -7,8 +7,9 @@ using System.Collections;
 
 public class Setup
 {
-    private char[,] scene;
-    private int[,] key;
+//Block.getAttachedBlocks()
+    private Vector2[] key;
+    private char[][] scene;
     // private ArrayList character;
     // private int size = 1; //character size
     
@@ -16,31 +17,25 @@ public class Setup
     // //
     // //}
 
-    // public Setup(char[][] level, int[][] key, int[]character){
-    //     scene = level;
-    //     key = key;
-    //     character.Add(character);
-    // }
+     public Setup(char[][] level, Vector2[] key, int[]character){
+         scene = level;
+         key = key;
+         character.Add(character);
+    }
     
 
-
-    // public bool isKey(){
-    //     if(size == key.getLength(0)) && checkKey()){
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // public bool checkKey(){
-    //     for(int i = 0; i < key.GetLength(0)){
-    //         for(int j = 0; j < key.GetLength(1)){
-    //             if(scene[i][j].color().Equals('y')){
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //     return false;
-    // }
+    public bool checkKey(){
+        int matches = 0;
+        if(key.Length() != Block.getAttachedBlocks().Length()) return false;
+        for(int i = 0; i < key.Length(); i++){
+            if(key[i].Equals((Block.getAttachedBlocks)[i])){
+                matches++;
+            }
+        }
+        return matches == key.Length();
+        //hello
+    }
+  
 
     // public char[][] getScene(){
     //     return scene;
