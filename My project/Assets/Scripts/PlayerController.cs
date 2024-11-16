@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
         //Confirm choices (level select, attachment, removal)
         if(Input.GetKeyDown(KeyCode.Return)){
+            levelInit one = new levelInit(1);
             // confirm = true;
         }
         //Spawn more tiles (debug)

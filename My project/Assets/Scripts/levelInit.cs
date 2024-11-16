@@ -13,21 +13,29 @@ public class levelInit : MonoBehaviour
 
 
     public levelInit(int levelNum){
+<<<<<<< Updated upstream
         createScene(levelNum);
         createKey("level"+levelNum);
+=======
+        UnityEngine.SceneManagement.Scene newScene = SceneManager.CreateScene("level" + levelNum);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.SetActiveScene(newScene);
+        GameObject gameObject = new GameObject();
+        gameObject.AddComponent<Camera>();
+        createScene("level" + levelNum);
+>>>>>>> Stashed changes
     }
 
     void Start(){
         //Create scene
         //Create key
-        SceneManager.CreateScene("level");
         // Setup setup = new Setup(scene, key, position);
     }
 
-    void createKey(String fileName){
-        var scene = 
-        var GameObject = new GameObject();
-        var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
+    void createScene(String fileName){
+        var scene = new Setup(fileName).getScene();
+        GameObject gameObject;
+        SpriteRenderer spriteRenderer;
         var playerTexture = Resources.Load<Texture2D>("Art/Tiles/blueTile.png");
         var redBlockTexture = Resources.Load<Texture2D>("Art/Tiles/redTile.png");
         var greenBlockTexture = Resources.Load<Texture2D>("Art/Tiles/greenTile.png");
@@ -47,50 +55,60 @@ public class levelInit : MonoBehaviour
         }
         TextAsset textFile = Resources.Load<TextAsset>("Levels/" + fileName);
         String sc = textFile.text;
-        int i = 0;
-        int j = 0;
-        for(int x = 0; i < scene.GetLength(0); x++){
-            for(int y = 0; i < scene.GetLength(1); y++){
+        for(int x = scene.GetLength(0) - 1; x >= 0; x--){
+            for(int y = scene.GetLength(1) - 1; y >= 0; y--){
                 switch(scene[x, y]){
                     case('E'):
                         break;
                     case('W'):
-                        SpriteRenderer.sprite = Sprite.Create(wallBlockTexture, new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        position = GameObject.transform.position;
+                        gameObject = new GameObject();
+                        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = Sprite.Create(wallBlockTexture, new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
+                        position = gameObject.transform.position;
                         position.x = x;
                         position.y = y;
-                        GameObject.transform.position = position;
-                        GameObject.tag = "Wall";
+                        Debug.Log("Creating wall at" + x + ", " + y);
+                        gameObject.transform.position = position;
+                        gameObject.tag = "Wall";
                         break;
                     case('B'):
-                        SpriteRenderer.sprite = Sprite.Create(playerTexture, new Rect(0, 0, playerTexture.width, playerTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        position = GameObject.transform.position;
+                        gameObject = new GameObject();
+                        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = Sprite.Create(playerTexture, new Rect(0, 0, playerTexture.width, playerTexture.height), new Vector2(0.5f, 0.5f), 64);
+                        position = gameObject.transform.position;
                         position.x = x;
                         position.y = y;
-                        GameObject.transform.position = position;
-                        GameObject.AddComponent<PlayerController>();
-                        GameObject.AddComponent<Block>();
-                        GameObject.tag = "Player";
+                        Debug.Log("Creating player at" + x + ", " + y);
+                        gameObject.transform.position = position;
+                        gameObject.AddComponent<PlayerController>();
+                        gameObject.AddComponent<Block>();
+                        gameObject.tag = "Player";
                         break;
 
                     case('R'):
-                        SpriteRenderer.sprite = Sprite.Create(redBlockTexture, new Rect(0, 0, redBlockTexture.width, redBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        position = GameObject.transform.position;
+                        gameObject = new GameObject();
+                        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = Sprite.Create(redBlockTexture, new Rect(0, 0, redBlockTexture.width, redBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
+                        position = gameObject.transform.position;
                         position.x = x;
                         position.y = y;
-                        GameObject.transform.position = position;
-                        GameObject.AddComponent<Block>();
-                        GameObject.tag = "Wall";
+                        Debug.Log("Creating red at" + x + ", " + y);
+                        gameObject.transform.position = position;
+                        gameObject.AddComponent<Block>();
+                        gameObject.tag = "RedBlock";
                         break;
 
                     case('G'):
-                        SpriteRenderer.sprite = Sprite.Create(greenBlockTexture, new Rect(0, 0, greenBlockTexture.width, greenBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        position = GameObject.transform.position;
+                        gameObject = new GameObject();
+                        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = Sprite.Create(greenBlockTexture, new Rect(0, 0, greenBlockTexture.width, greenBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
+                        position = gameObject.transform.position;
                         position.x = x;
                         position.y = y;
-                        GameObject.transform.position = position;
-                        GameObject.AddComponent<Block>();
-                        GameObject.tag = "Wall";
+                        Debug.Log("Creating green at" + x + ", " + y);
+                        gameObject.transform.position = position;
+                        gameObject.AddComponent<Block>();
+                        gameObject.tag = "GreenBlock";
                         break;
                 }
             }
