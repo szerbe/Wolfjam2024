@@ -15,7 +15,7 @@ public class Setup
     //
     //}
 
-    public Console(char[][] level, int[][] key, int[]character){
+    public Setup(char[][] level, int[][] key, int[]character){
         scene = level;
         key = key;
         character.Add(character);
@@ -23,7 +23,7 @@ public class Setup
     
 
     public void rotateL(){
-
+        
     }
 
     public void rotateR(){
