@@ -8,6 +8,7 @@ using System.IO;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
+using UnityEngine.TextCore.Text;
 
 
 public class Setup {
@@ -19,8 +20,8 @@ public class Setup {
 
     private List<int[]> character;
 
-    private int blockWidth = 1;
-    private int blockHeight = 1;
+    private static int blockWidth = 1;
+    private static int blockHeight = 1;
     
     // //public static main(string[] args){
     // //
@@ -61,8 +62,8 @@ public class Setup {
     }
     public static bool canMove(char direction){
         List<int[]> player = scene;
-        for(int i = 0; i < player.Count; i++){
-            int[] location = player[i];
+        for(int i = 0; i < character.Count; i++){
+            int[] location = character[i];
             if(direction.Equals('l')){
                 Debug.Log("Moving Left!");
                 location[0] -= 1;
@@ -88,8 +89,10 @@ public class Setup {
             }
             if(color.Equals('R')){
                 player[location[0],location[1]] = new Block('B');
+                player[character[i][0], character[i][1]] = new Block('E');
             }
         }
+        scene = player;
         Debug.Log("Successfully Moved!");
         return true;
     }
@@ -104,9 +107,8 @@ public class Setup {
         Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
 
         List<int[]> player = scene;
-        for(int i = 0; i < player.Count; i++){
-            int[] location = player[i];
-            location = new Vector2((float)Math.Round(matrix[0].x*player[i].x + matrix[0].y*player[i].y), (float)Math.Round(matrix[1].x*player[i].x + matrix[1].y*player[i].y));
+        for(int i = 0; i < character.Count; i++){
+            location = new Vector2((float)Math.Round(matrix[0].x*character[i].x*blockWidth + matrix[0].y*character[i].y*blockHeight), (float)Math.Round(matrix[1].x*player[i].x*blockWidth + matrix[1].y*player[i].y*blockHeight));
             Debug.Log("Rotating: "+location.x + ", " + location.y);
             if(scene[location[0],location[1]].Equals('B')){
                 return false;
@@ -116,19 +118,34 @@ public class Setup {
     }
     
 
+    // public bool checkKey(){
+    //     int matches = 0;
+    //     if(key.Length != Block.getAttachedBlocks().Count) return false;
+    //     for(int i = 0; i < key.Count(); i++){
+    //         if(key[i].Equals((Block.getAttachedBlocks()).ElementAt(i))){
+    //             matches++;
+    //         }
+    //     }
+    //     return matches == key.Length;
+    //     //hello
+    // }
+
+    public bool isKey(){
+        if(character.Count == key.GetLength(0)) && checkKey()){
+            return true;
+        }
+        return false;
+    }
     public bool checkKey(){
-        int matches = 0;
-        if(key.Length != Block.getAttachedBlocks().Count) return false;
-        for(int i = 0; i < key.Count(); i++){
-            if(key[i].Equals((Block.getAttachedBlocks()).ElementAt(i))){
-                matches++;
+        for(int i = 0; i < key.GetLength(0)){
+            for(int j = 0; j < key.GetLength(1)){
+                if(scene[i][j].color().Equals('c')){
+                    return true;
+                }
             }
         }
-        return matches == key.Length;
-        //hello
+        return false;
     }
-  
-
     // public char[][] getScene(){
     //     return scene;
     // }
