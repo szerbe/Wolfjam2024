@@ -8,7 +8,6 @@ using System.IO;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
-using UnityEngine.TextCore.Text;
 
 
 public class Setup {
@@ -47,10 +46,10 @@ public class Setup {
             }
         }
 
-        for(int i = 0; i < scene.GetLength(0); i++){
-            for(int j = 0; j < scene.GetLength(1); j++){
+        for(i = 0; i < scene.GetLength(0); i++){
+            for(j = 0; j < scene.GetLength(1); j++){
                 if(scene[i,j].Equals('C')){
-                    character.Add(new int[i,j]);
+                    character.Add(new int[]{i,j});
                     i = scene.GetLength(0);
                     j = scene.GetLength(1)
                 }
@@ -116,9 +115,9 @@ public class Setup {
         //Debug.Log(cosX + ", " + sinX);
         int[,] matrix = {{cosX, -sinX}, {sinX, cosX}};
 
-        List<int[]> player = scene;
+        char[,] player = scene;
         for(int i = 0; i < character.Count; i++){
-            int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*player[i][0]*blockWidth + matrix[1,1]*player[i][1]*blockHeight};
+            int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*character[i][0]*blockWidth + matrix[1,1]*character[i][1]*blockHeight};
             Debug.Log("Rotating: "+location[0] + ", " + location[1]);
             if(scene[location[0],location[1]].Equals('B')){
                 return false;
