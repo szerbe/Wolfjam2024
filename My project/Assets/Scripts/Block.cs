@@ -13,6 +13,9 @@ public class Block : MonoBehaviour
     private Boolean left;
     private Boolean right;
 
+    private static List<Vector2> player = Block.getAttachedBlocks();
+    private static List<Vector2> walls = Block.getWalls();
+
     public Block(char c){
         up = false;
         down = false;
@@ -26,6 +29,7 @@ public class Block : MonoBehaviour
         //'e' = Empty = no tile
         color = c;
     }
+    
     
     public char getColor(){
         return color;
@@ -54,6 +58,13 @@ public class Block : MonoBehaviour
     }
     public void setUp(bool u){
         up = u;
+    }
+
+    void Update(){
+        if(this.tag == "Player"){
+            player = Block.getAttachedBlocks();
+            walls = Block.getWalls();
+        }
     }
 
     public static List<Vector2> getAttachedBlocks(){
@@ -216,5 +227,35 @@ public class Block : MonoBehaviour
         else{
             Debug.Log("Block could not be created" + dir + "of block at " + transform.position);
         }
+    }
+
+    public static bool canMove(char direction){
+        for(int i = 0; i < player.Count; i++){
+            Vector2 location = player[i];
+            if(direction.Equals('l')){
+                Debug.Log("Moving Left!");
+                location.x -= 1;
+            }
+            if(direction.Equals('r')){
+                Debug.Log("Moving Right!");
+                location.x += 1;
+            }
+            if(direction.Equals('u')){
+                Debug.Log("Moving Up!");
+                location.y += 1;
+            }
+            if(direction.Equals('d')){
+                Debug.Log("Moving Down");
+                location.y -= 1;
+            }
+            for(int j = 0; j < walls.Count; j++){
+                if(walls.Contains(location)){
+                    Debug.Log("Cannot move");
+                    return false;
+                }
+            }
+        }
+        Debug.Log("Successfully Moved!");
+        return true;
     }
 }
