@@ -63,9 +63,9 @@ public class PlayerController : MonoBehaviour
             if(!(this.GetComponent<Block>().getLeft())){
                 this.GetComponent<Block>().attach("LEFT", "tile2.png");
             }
-            if(!(this.GetComponent<Block>().getUp())){
-                this.GetComponent<Block>().attach("UP", "redTile.png");
-            }
+            // if(!(this.GetComponent<Block>().getUp())){
+            //     this.GetComponent<Block>().attach("UP", "redTile.png");
+            // }
 
             // Debug.Log("Trying to create a sprite");
         }
@@ -90,38 +90,13 @@ public class PlayerController : MonoBehaviour
         if(rotate == 'N'){
             return;
         }
-        else if(rotate == 'Q'){ //&& canRotate('l')
+        else if(rotate == 'Q' && Block.canRotate('l')){
             transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
             return;
         }
-        else if(rotate == 'E'){ //&& canRotate('r')
+        else if(rotate == 'E' && Block.canRotate('r')){
             transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
             return;
         }
-    }
-
-    
-
-    bool canRotate(char direction){
-        List<Vector2> player = Block.getAttachedBlocks();
-        List<Vector2> walls = Block.getWalls();
-        double theta = 90;
-        if(direction.Equals('r')){
-            theta = -90;
-        }
-        float cosX = (float)Math.Cos(theta);
-        float sinX = (float)Math.Sin(theta);
-        Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
-
-        for(int i = 0; i < player.Count; i++){
-            Vector2 location = player[i];
-            location = new Vector2(matrix[0].x*player[i].x + matrix[0].y*player[i].y, matrix[1].x*player[i].x + matrix[1].y*player[i].y);
-            for(int j = 0; j < walls.Count; j++){
-                if(walls.Contains(location)){
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
