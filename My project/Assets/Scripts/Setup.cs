@@ -8,20 +8,19 @@ public class Block : MonoBehaviour
 {
     private char[30][30] scene;
     private int[10][2] key;
+    private List<int[]> character;
     private int size = 1; //character size
     
     //public static main(string[] args){
     //
     //}
 
-    public Console(char[][] level){
+    public Console(char[][] level, int[][] key, int[]character){
         scene = level;
         key = key;
+        character.Add(character);
     }
     
-    public static move(){
-
-    }
 
     public static rotateL(){
 

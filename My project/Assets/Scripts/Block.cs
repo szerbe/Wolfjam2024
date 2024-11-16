@@ -9,9 +9,10 @@ public class Block : MonoBehaviour
     public Block(char c){
         //'r' = Red = subtract
         //'g' = Green = merge
-        //'b' = black = obstacle (cannot overlap)
-        //'c' = blue = character (subclass)
+        //'b' = Black = obstacle (cannot overlap)
+        //'c' = Blue = character (subclass)
         //'y' = key = win condition
+        //'e' = Empty = no tile
         color = c;
     }
     
