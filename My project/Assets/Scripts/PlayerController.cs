@@ -51,10 +51,6 @@ public class PlayerController : MonoBehaviour
         //Confirm choices (level select, attachment, removal)
         if(Input.GetKeyDown(KeyCode.Return)){
             // confirm = true;
-            List<Vector2> pos = Block.getWalls();
-            foreach(Vector2 wall in pos){
-                Debug.Log(wall.x + ", " + wall.y);
-            }
         }
         //Spawn more tiles (debug)
         if(Input.GetKeyDown(KeyCode.P)){
@@ -71,7 +67,7 @@ public class PlayerController : MonoBehaviour
                 this.GetComponent<Block>().attach("UP", "redTile.png");
             }
 
-            Debug.Log("Trying to create a sprite");
+            // Debug.Log("Trying to create a sprite");
         }
         
 

@@ -79,6 +79,24 @@ public class Block : MonoBehaviour
         }
         return positions;
     }
+
+    public static List<Vector2> getRedBlocks(){
+        List<Vector2> positions = new List<Vector2>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("RedBlock");
+        foreach(GameObject obj in objs){
+            positions.Add(obj.transform.position);
+        }
+        return positions;
+    }
+
+    public static List<Vector2> getGreenBlocks(){
+        List<Vector2> positions = new List<Vector2>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("GreenBlock");
+        foreach(GameObject obj in objs){
+            positions.Add(obj.transform.position);
+        }
+        return positions;
+    }
     /* Attaches another block to this
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png
@@ -98,10 +116,17 @@ public class Block : MonoBehaviour
                 position.x = this.transform.position.x;
                 position.y = this.transform.position.y - 1;
                 GameObject.transform.position = position;
-                GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setUp(true);
+                if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
+                    GameObject.AddComponent<PlayerController>();
+                    GameObject.gameObject.tag = ("Attached");
+                }
+
+                else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
+                    GameObject.AddComponent<Block>();
+                    GameObject.gameObject.tag = this.tag;
+                }
 
             }
             else {
@@ -118,10 +143,17 @@ public class Block : MonoBehaviour
                 position.x = this.transform.position.x + 1;
                 position.y = this.transform.position.y;
                 GameObject.transform.position = position;
-                GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setLeft(true);
+                if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
+                    GameObject.AddComponent<PlayerController>();
+                    GameObject.gameObject.tag = ("Attached");
+                }
+
+                else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
+                    GameObject.AddComponent<Block>();
+                    GameObject.gameObject.tag = this.tag;
+                }
             }
             else {
                 Debug.Log("Texture Not Found");
@@ -137,10 +169,17 @@ public class Block : MonoBehaviour
                 position.x = this.transform.position.x;
                 position.y = this.transform.position.y + 1;
                 GameObject.transform.position = position;
-                GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setDown(true);
+                if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
+                    GameObject.AddComponent<PlayerController>();
+                    GameObject.gameObject.tag = ("Attached");
+                }
+
+                else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
+                    GameObject.AddComponent<Block>();
+                    GameObject.gameObject.tag = this.tag;
+                }
 
             }
             else {
@@ -157,10 +196,17 @@ public class Block : MonoBehaviour
                 position.x = this.transform.position.x - 1;
                 position.y = this.transform.position.y;
                 GameObject.transform.position = position;
-                GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setRight(true);
+                if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
+                    GameObject.AddComponent<PlayerController>();
+                    GameObject.gameObject.tag = ("Attached");
+                }
+
+                else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
+                    GameObject.AddComponent<Block>();
+                    GameObject.gameObject.tag = this.tag;
+                }
             }
             else {
                 Debug.Log("Texture Not Found");
