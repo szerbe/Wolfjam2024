@@ -13,8 +13,6 @@ public class levelInit : MonoBehaviour
 
 
     public levelInit(int levelNum){
-        createScene(levelNum);
-        createKey("level"+levelNum);
         UnityEngine.SceneManagement.Scene newScene = SceneManager.CreateScene("level" + levelNum);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.SetActiveScene(newScene);

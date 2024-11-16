@@ -141,14 +141,14 @@ public class Setup {
     // }
 
     public bool isKey(){
-        if(character.Count == key.GetLength(0)) && checkKey()){
+        if((character.Count == key.GetLength(0)) && checkKey()){
             return true;
         }
         return false;
     }
     public bool checkKey(){
-        for(int i = 0; i < key.GetLength(0)){
-            for(int j = 0; j < key.GetLength(1)){
+        for(int i = 0; i < key.GetLength(0); i++){
+            for(int j = 0; j < key.GetLength(1); j++){
                 if(scene[i,j].Equals('c')){
                     return true;
                 }
