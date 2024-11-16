@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class Block : MonoBehaviour
@@ -41,7 +43,6 @@ public class Block : MonoBehaviour
     public bool getUp(){
         return up;
     }
-
     public void setDown(bool d){
         down = d;
     }
@@ -53,6 +54,15 @@ public class Block : MonoBehaviour
     }
     public void setUp(bool u){
         up = u;
+    }
+
+    public static List<Vector2> getAttachedBlocks(){
+        List<Vector2> positions = null;
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Attached");
+        foreach(GameObject obj in objs){
+            positions.Add(obj.transform.position);
+        }
+        return positions;
     }
     /* Attaches another block to this
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
@@ -75,6 +85,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setUp(true);
 
             }
@@ -94,8 +105,8 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setLeft(true);
-
             }
             else {
                 Debug.Log("Texture Not Found");
@@ -113,6 +124,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setDown(true);
 
             }
@@ -132,6 +144,7 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
+                GameObject.gameObject.tag = ("Attached");
                 GameObject.GetComponent<Block>().setRight(true);
             }
             else {
