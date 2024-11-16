@@ -13,17 +13,14 @@ public class levelInit : MonoBehaviour
 
 
     public levelInit(int levelNum){
-<<<<<<< Updated upstream
         createScene(levelNum);
         createKey("level"+levelNum);
-=======
         UnityEngine.SceneManagement.Scene newScene = SceneManager.CreateScene("level" + levelNum);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.SetActiveScene(newScene);
         GameObject gameObject = new GameObject();
         gameObject.AddComponent<Camera>();
         createScene("level" + levelNum);
->>>>>>> Stashed changes
     }
 
     void Start(){
