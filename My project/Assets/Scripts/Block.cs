@@ -2,36 +2,17 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-
-
 public class Block : MonoBehaviour
 {
+    private char color;
+
+    public Block(char c){
+        //'r' = Red = subtract
+        //'g' = Green = merge
+        //'b' = black = obstacle (cannot overlap)
+        //'c' = blue = character (subclass)
+        color = c;
+    }
     
-private bool right;
-private bool left;
-private bool above;
-private bool below;
-
-    public Block(bool r, bool l, bool a, bool b){
-        right = r;
-        left = l;
-        above = a;
-        below = b;
-    }
-    public Boolean isRight(){
-        return right;
-    }
-
-    public Boolean isLeft(){
-        return left;
-    }
-
-    public Boolean isAbove(){
-        return above;
-    }
-
-    public Boolean isBelow(){
-        return below;
-    }
 
 }
