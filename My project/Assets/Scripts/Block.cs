@@ -33,15 +33,20 @@ public class Block : MonoBehaviour
         return down;
     }
 
+    /* Attaches another block to this
+    * @param dir - direction to attach to, 0 = down, 1 = right, 2 = up, 3 = left
+    * @param spr - sprite name of sprite to attach, full sprite name before last .png
+    */
     public void attach(int dir, String spr){
-        Debug.Log("Method Called!");
+        // Debug.Log("Method Called!");
+        var GameObject = new GameObject();
+        var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
+        var texture = Resources.Load<Texture2D>("Art/Tiles/" + spr);
+        
         if(dir == 0 && !down){
-            var GameObject = new GameObject();
-            var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
-            var texture = Resources.Load<Texture2D>("Art/Tiles/" + spr);
             if(texture != null){
                 down = true;
-                Debug.Log("Condition Met");
+                // Debug.Log("Condition Met");
                 SpriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 64);
                 Vector2 position = GameObject.transform.position;
                 position.x = this.transform.position.x;
@@ -49,7 +54,6 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                down = true;
 
             }
             else {
@@ -57,12 +61,9 @@ public class Block : MonoBehaviour
             }
         }
         if(dir == 1 && !right){
-            var GameObject = new GameObject();
-            var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
-            var texture = Resources.Load<Texture2D>("Art/Tiles/" + spr);
             if(texture != null){
-                down = true;
-                Debug.Log("Condition Met");
+                right = true;
+                // Debug.Log("Condition Met");
                 SpriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 64);
                 Vector2 position = GameObject.transform.position;
                 position.x = this.transform.position.x + 1;
@@ -70,7 +71,6 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                down = true;
 
             }
             else {
@@ -78,12 +78,9 @@ public class Block : MonoBehaviour
             }
         }
         if(dir == 2 && !up){
-            var GameObject = new GameObject();
-            var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
-            var texture = Resources.Load<Texture2D>("Art/Tiles/" + spr);
             if(texture != null){
-                down = true;
-                Debug.Log("Condition Met");
+                up = true;
+                // Debug.Log("Condition Met");
                 SpriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 64);
                 Vector2 position = GameObject.transform.position;
                 position.x = this.transform.position.x;
@@ -91,7 +88,6 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                down = true;
 
             }
             else {
@@ -99,12 +95,9 @@ public class Block : MonoBehaviour
             }
         }
         if(dir == 3 && !left){
-            var GameObject = new GameObject();
-            var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
-            var texture = Resources.Load<Texture2D>("Art/Tiles/" + spr);
             if(texture != null){
-                down = true;
-                Debug.Log("Condition Met");
+                left = true;
+                // Debug.Log("Condition Met");
                 SpriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 64);
                 Vector2 position = GameObject.transform.position;
                 position.x = this.transform.position.x - 1;
@@ -112,7 +105,6 @@ public class Block : MonoBehaviour
                 GameObject.transform.position = position;
                 GameObject.AddComponent<PlayerController>();
                 GameObject.AddComponent<Block>();
-                down = true;
 
             }
             else {
@@ -120,7 +112,4 @@ public class Block : MonoBehaviour
             }
         }
     }
-
-    
-
 }

@@ -10,6 +10,7 @@ public class levelInit : MonoBehaviour
     private int[,] key;
     private Vector2 position = Vector2.zero;
 
+
     public levelInit(int levelNum){
         createScene(levelNum);
         createKey(levelNum);
