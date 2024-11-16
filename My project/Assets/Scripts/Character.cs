@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class Character
+public class Character : Block
 {
-    
+    public static color(){
+        return 'c';
+    }
 }
