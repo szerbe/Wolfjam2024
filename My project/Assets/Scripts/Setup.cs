@@ -46,22 +46,32 @@ public class Setup {
                 Debug.Log(c);
             }
         }
+
+        for(int i = 0; i < scene.GetLength(0); i++){
+            for(int j = 0; j < scene.GetLength(1); j++){
+                if(scene[i,j].Equals('C')){
+                    character.Add(new int[i,j]);
+                    i = scene.GetLength(0);
+                    j = scene.GetLength(1)
+                }
+            }  
+        }
     }
 
     public char[,] getScene(){
         return scene;
     }
 
-    public void build(){
-        for (int i = 0; i < scene.GetLength(0); i++) {
-            for (int j = 0; j < scene.GetLength(1); j++) {
-                GameObject temp = Instantiate(Block(scene[i,j]), new Vector3(j * blockWidth, i * blockHeight, 0), Quaternion.identity) as GameObject;
-                //format: Instiantiate(GameObject, Vector, Quaternion.identity)
-            }
-        }
-    }
-    public static bool canMove(char direction){
-        List<int[]> player = scene;
+    // public void build(){
+    //     for (int i = 0; i < scene.GetLength(0); i++) {
+    //         for (int j = 0; j < scene.GetLength(1); j++) {
+    //             GameObject temp = Instantiate(Block(scene[i,j]), new Vector3(j * blockWidth, i * blockHeight, 0), Quaternion.identity) as GameObject;
+    //             //format: Instiantiate(GameObject, Vector, Quaternion.identity)
+    //         }
+    //     }
+    // }
+    public bool canMove(char direction){
+        char[,] player = scene;
         for(int i = 0; i < character.Count; i++){
             int[] location = character[i];
             if(direction.Equals('l')){
@@ -81,15 +91,15 @@ public class Setup {
                 location[1] -= 1;
             }
             char color = scene[location[0],location[1]];
-            if(color.Equals('B')){
+            if(color.Equals('R')){
+                player[location[0],location[1]] = 'B';
+                player[character[i][0], character[i][1]] = 'E';
+            }
+            if(color.Equals('B')||color.Equals('R')){
                 return false;
             }
             if(color.Equals('G')){
-                player[location[0],location[1]] = new Block('C');
-            }
-            if(color.Equals('R')){
-                player[location[0],location[1]] = new Block('B');
-                player[character[i][0], character[i][1]] = new Block('E');
+                player[location[0],location[1]] = 'C';
             }
         }
         scene = player;
@@ -97,19 +107,19 @@ public class Setup {
         return true;
     }
 
-    public static bool canRotate(char direction){
+    public bool canRotate(char direction){
         int cosX = 0;
         int sinX = 1;
         if(direction.Equals('r')){
             sinX = -1;
         }
         //Debug.Log(cosX + ", " + sinX);
-        Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
+        int[,] matrix = {{cosX, -sinX}, {sinX, cosX}};
 
         List<int[]> player = scene;
         for(int i = 0; i < character.Count; i++){
-            location = new Vector2((float)Math.Round(matrix[0].x*character[i].x*blockWidth + matrix[0].y*character[i].y*blockHeight), (float)Math.Round(matrix[1].x*player[i].x*blockWidth + matrix[1].y*player[i].y*blockHeight));
-            Debug.Log("Rotating: "+location.x + ", " + location.y);
+            int[] location = {matrix[0,0]*character[i][0]*blockWidth + matrix[0,1]*character[i][1]*blockHeight, matrix[1,0]*player[i][0]*blockWidth + matrix[1,1]*player[i][1]*blockHeight};
+            Debug.Log("Rotating: "+location[0] + ", " + location[1]);
             if(scene[location[0],location[1]].Equals('B')){
                 return false;
             }
@@ -139,7 +149,7 @@ public class Setup {
     public bool checkKey(){
         for(int i = 0; i < key.GetLength(0)){
             for(int j = 0; j < key.GetLength(1)){
-                if(scene[i][j].color().Equals('c')){
+                if(scene[i,j].Equals('c')){
                     return true;
                 }
             }
