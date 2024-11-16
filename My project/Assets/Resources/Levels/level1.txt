@@ -1,0 +1,6 @@
+5 5
+E E E E B:
+E R E E G:
+E E E E E:
+E E E E E:
+E W W W E:
