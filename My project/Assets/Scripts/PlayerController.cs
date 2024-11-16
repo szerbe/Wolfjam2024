@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)){
             rotate = 'Q';
             if(!(this.GetComponent<Block>().getDown())){
-                this.GetComponent<Block>().attach(0, "blueBlock");
-                this.GetComponent<Block>().attach(1, "greenBlock");
-                this.GetComponent<Block>().attach(2, "redBlock");
-                this.GetComponent<Block>().attach(3, "wallBlock");
+                this.GetComponent<Block>().attach(0, "blueTile.png");
+                this.GetComponent<Block>().attach(1, "greenTile.png");
+                this.GetComponent<Block>().attach(2, "redTile.png");
+                this.GetComponent<Block>().attach(3, "tile2.png");
             }
             Debug.Log("Trying to create a sprite");
         }
@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             if(rotate == 'c'){
-
             }
         }
     }
