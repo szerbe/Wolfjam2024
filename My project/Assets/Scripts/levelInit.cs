@@ -14,7 +14,7 @@ public class levelInit : MonoBehaviour
 
     public levelInit(int levelNum){
         createScene(levelNum);
-        createKey(levelNum);
+        createKey("level"+levelNum);
     }
 
     void Start(){
