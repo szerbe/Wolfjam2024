@@ -30,13 +30,13 @@ public class PlayerController : MonoBehaviour
             vertical = -1.0f;
         }
 
-        //Rotate right
+        //Rotate counterclockwise
         if(Input.GetKeyDown(KeyCode.Q)){
             rotate = 'Q';
             rotateDir(rotate);
         }
 
-        //Rotate left
+        //Rotate clockwise
         if(Input.GetKeyDown(KeyCode.E)){
             rotate = 'E';
             rotateDir(rotate);
@@ -53,10 +53,10 @@ public class PlayerController : MonoBehaviour
         //Spawn more tiles (debug)
         if(Input.GetKeyDown(KeyCode.P)){
             if(!(this.GetComponent<Block>().getDown())){
-                this.GetComponent<Block>().attach(0, "blueTile.png");
-                this.GetComponent<Block>().attach(1, "greenTile.png");
-                this.GetComponent<Block>().attach(2, "redTile.png");
-                this.GetComponent<Block>().attach(3, "tile2.png");
+                this.GetComponent<Block>().attach("DOWN", "blueTile.png");
+                this.GetComponent<Block>().attach("RIGHT", "greenTile.png");
+                this.GetComponent<Block>().attach("UP", "redTile.png");
+                this.GetComponent<Block>().attach("LEFT", "tile2.png");
             }
             Debug.Log("Trying to create a sprite");
         }
@@ -68,16 +68,16 @@ public class PlayerController : MonoBehaviour
         position.y = position.y + vertical;
         transform.position = position;
 
-        //Rotates the player in a direction, Q for right, E for left
+        //Rotates the player in a direction, Q for counterclockwise, E for clockwise
         void rotateDir(char rotate){
             if(rotate == 'N'){
                 return;
             }
-            if(rotate == 'Q'){
+            else if(rotate == 'Q'){
                 transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
                 return;
             }
-            if(rotate == 'E'){
+            else if(rotate == 'E'){
                 transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
                 return;
             }

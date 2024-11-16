@@ -34,16 +34,16 @@ public class Block : MonoBehaviour
     }
 
     /* Attaches another block to this
-    * @param dir - direction to attach to, 0 = down, 1 = right, 2 = up, 3 = left
+    * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png
     */
-    public void attach(int dir, String spr){
+    public void attach(String dir, String spr){
         // Debug.Log("Method Called!");
         var GameObject = new GameObject();
         var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
         var texture = Resources.Load<Texture2D>("Art/Tiles/" + spr);
         
-        if(dir == 0 && !down){
+        if(dir.Equals("DOWN") && !down){
             if(texture != null){
                 down = true;
                 // Debug.Log("Condition Met");
@@ -57,10 +57,11 @@ public class Block : MonoBehaviour
 
             }
             else {
-                Debug.Log("Not Found");
+                Debug.Log("Texture Not Found");
             }
         }
-        if(dir == 1 && !right){
+
+        else if(dir.Equals("RIGHT") && !right){
             if(texture != null){
                 right = true;
                 // Debug.Log("Condition Met");
@@ -74,10 +75,11 @@ public class Block : MonoBehaviour
 
             }
             else {
-                Debug.Log("Not Found");
+                Debug.Log("Texture Not Found");
             }
         }
-        if(dir == 2 && !up){
+
+        else if(dir.Equals("UP") && !up){
             if(texture != null){
                 up = true;
                 // Debug.Log("Condition Met");
@@ -91,10 +93,11 @@ public class Block : MonoBehaviour
 
             }
             else {
-                Debug.Log("Not Found");
+                Debug.Log("Texture Not Found");
             }
         }
-        if(dir == 3 && !left){
+        
+        else if(dir.Equals("LEFT") && !left){
             if(texture != null){
                 left = true;
                 // Debug.Log("Condition Met");
@@ -108,8 +111,12 @@ public class Block : MonoBehaviour
 
             }
             else {
-                Debug.Log("Not Found");
+                Debug.Log("Texture Not Found");
             }
+        }
+
+        else{
+            Debug.Log("Block could not be created" + dir + "of block at " + transform.position);
         }
     }
 }
