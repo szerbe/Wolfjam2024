@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Setup
 {
-    private char[30][30] scene;
+    private char[,] scene;
     private int[,] key;
     private ArrayList character;
     private int size = 1; //character size
