@@ -13,18 +13,8 @@ public class Character : Block
         color = c;
     }
 
-    public void change(char direction, int change){
-        int d = 0; //right, direction = 'r'
-        if(char.Equals('d')){
-            d = 1;
-        }
-        if(char.Equals('l')){
-            d = 2;
-        }
-        if(char.Equals('u')){
-            d = 3;
-        }
-        near[d] = change;
+    public void change(int direction, int change){
+        near[direction] = change;
     }
 
     public int[] near(){
