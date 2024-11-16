@@ -62,7 +62,7 @@ public class levelInit : MonoBehaviour
                         spriteRenderer.sprite = Sprite.Create(wallBlockTexture, new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
                         position = gameObject.transform.position;
                         position.x = x;
-                        position.y = y;
+                        position.y = -y;
                         Debug.Log("Creating wall at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.tag = "Wall";
@@ -73,7 +73,7 @@ public class levelInit : MonoBehaviour
                         spriteRenderer.sprite = Sprite.Create(playerTexture, new Rect(0, 0, playerTexture.width, playerTexture.height), new Vector2(0.5f, 0.5f), 64);
                         position = gameObject.transform.position;
                         position.x = x;
-                        position.y = y;
+                        position.y = -y;
                         Debug.Log("Creating player at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.AddComponent<PlayerController>();
@@ -87,7 +87,7 @@ public class levelInit : MonoBehaviour
                         spriteRenderer.sprite = Sprite.Create(redBlockTexture, new Rect(0, 0, redBlockTexture.width, redBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
                         position = gameObject.transform.position;
                         position.x = x;
-                        position.y = y;
+                        position.y = -y;
                         Debug.Log("Creating red at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.AddComponent<Block>();
@@ -100,7 +100,7 @@ public class levelInit : MonoBehaviour
                         spriteRenderer.sprite = Sprite.Create(greenBlockTexture, new Rect(0, 0, greenBlockTexture.width, greenBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
                         position = gameObject.transform.position;
                         position.x = x;
-                        position.y = y;
+                        position.y = -y;
                         Debug.Log("Creating green at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.AddComponent<Block>();
@@ -112,7 +112,7 @@ public class levelInit : MonoBehaviour
                         spriteRenderer.sprite = Sprite.Create(yellowBlockTexture, new Rect(0, 0, yellowBlockTexture.width, yellowBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
                         position = gameObject.transform.position;
                         position.x = x;
-                        position.y = y;
+                        position.y = -y;
                         Debug.Log("Creating yellow at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.AddComponent<goldenTiles>();

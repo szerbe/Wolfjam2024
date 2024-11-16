@@ -1,6 +1,15 @@
-5 5
-E E E E B:
-E R E E G:
-E E E E E:
-E E E E E:
-E W W W E:
+20 13
+B B B B B B B B B B B B B B B B B B B B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E G G G E E E E R R R E E E E E E E B:
+B E E E E E E E E R E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E C E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E Y Y E E E E B:
+B E E E E G G E E E E E Y Y Y E E E E B:
+B E E E E E G E E E E E E E E E E E E B:
+B E E E E G G E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B B B B B B B B B B B B B B B B B B B B:
+
