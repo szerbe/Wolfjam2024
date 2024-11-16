@@ -18,30 +18,22 @@ public class PlayerController : MonoBehaviour
         char rotate = 'N';
         bool confirm = false;
         //Move left
-        if(canMove('l')){
-            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
-                horizontal = -1.0f;
-            }
+        if(canMove('l') && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))){
+            horizontal = -1.0f;
         }
         //Move right
-        if(canMove('r')){
-            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
-                horizontal = 1.0f;
-            }
+        if(canMove('r') && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))){
+            horizontal = 1.0f;
         }
 
         //Move up
-        if(canMove('u')){
-            if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){
-                vertical = 1.0f;
-            }
+        if(canMove('u') && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))){
+            vertical = 1.0f;
         }
 
         //Move down
-        if(canMove('d')){
-            if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
-                vertical = -1.0f;
-            }
+        if(canMove('d') && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))){
+            vertical = -1.0f;
         }
 
         //Rotate counterclockwise
@@ -125,7 +117,7 @@ public class PlayerController : MonoBehaviour
             if(direction.Equals('d')){
                 location.y -= 1;
             }
-            for(int j = 0; j < walls.Capacity; j++){
+            for(int j = 0; j < walls.Count; j++){
                 if(walls.Contains(location)){
                     return false;
                 }
@@ -134,25 +126,26 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    /*bool canRotate(char direction){
+    bool canRotate(char direction){
         List<Vector2> player = Block.getAttachedBlocks();
         List<Vector2> walls = Block.getWalls();
-        double theta = Math.PI/2;
+        double theta = 90;
         if(direction.Equals('r')){
-            theta = -Math.PI/2;
+            theta = -90;
         }
         float cosX = (float)Math.Cos(theta);
         float sinX = (float)Math.Sin(theta);
         Vector2[] matrix = {new Vector2(cosX, -sinX), new Vector2(sinX, cosX)};
 
-        for(int i = 0; i < player.Capacity; i++){
-            Vector2 location = <matrix[0].x*player[i].x + matrix[0].y*player[i].y, matrix[1].x*player[i].x + matrix[1].y*player[i].y>
-            for(int j = 0; j < walls.Capacity; j++){
+        for(int i = 0; i < player.Count; i++){
+            Vector2 location = player[i];
+            location = new Vector2(matrix[0].x*player[i].x + matrix[0].y*player[i].y, matrix[1].x*player[i].x + matrix[1].y*player[i].y);
+            for(int j = 0; j < walls.Count; j++){
                 if(walls.Contains(location)){
                     return false;
                 }
             }
         }
         return true;
-    }*/
+    }
 }
