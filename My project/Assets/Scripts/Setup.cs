@@ -91,7 +91,7 @@ public class Setup {
 
                     case('R'):
                         SpriteRenderer.sprite = Sprite.Create(redBlockTexture, new Rect(0, 0, redBlockTexture.width, redBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        Vector2 position = GameObject.transform.position;
+                        position = GameObject.transform.position;
                         position.x = x;
                         position.y = y;
                         GameObject.transform.position = position;
@@ -101,7 +101,7 @@ public class Setup {
 
                     case('G'):
                         SpriteRenderer.sprite = Sprite.Create(greenBlockTexture, new Rect(0, 0, greenBlockTexture.width, greenBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        Vector2 position = GameObject.transform.position;
+                        position = GameObject.transform.position;
                         position.x = x;
                         position.y = y;
                         GameObject.transform.position = position;
