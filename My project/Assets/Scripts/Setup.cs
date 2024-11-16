@@ -15,7 +15,7 @@ public class Setup
     //
     //}
 
-    public Setup(char[][] level, int[][] key, int[]character){
+    public Setup(char[,] level, int[,] key, int[]character){
         scene = level;
         key = key;
         character.Add(character);
