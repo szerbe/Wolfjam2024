@@ -47,4 +47,8 @@ public class Block : MonoBehaviour
         }
         return false;
     }
+
+    public char[][] getScene(){
+        return scene;
+    }
 }
