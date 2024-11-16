@@ -79,6 +79,24 @@ public class Block : MonoBehaviour
         }
         return positions;
     }
+
+    public static List<Vector2> getRedBlocks(){
+        List<Vector2> positions = new List<Vector2>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("RedBlock");
+        foreach(GameObject obj in objs){
+            positions.Add(obj.transform.position);
+        }
+        return positions;
+    }
+
+    public static List<Vector2> getGreenBlocks(){
+        List<Vector2> positions = new List<Vector2>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("GreenBlock");
+        foreach(GameObject obj in objs){
+            positions.Add(obj.transform.position);
+        }
+        return positions;
+    }
     /* Attaches another block to this
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png
