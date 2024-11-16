@@ -115,9 +115,9 @@ public class Setup {
     }
 
     public void build(){
-        for (int i = 0; i < scene.Length; i++) {
-            for (int j = 0; j < scene[0].Length; j++) {
-                GameObject temp = Instantiate(Block(scene[i][j]), new Vector3(j * blockWidth, i * blockHeight, 0), Quaternion.identity) as GameObject;
+        for (int i = 0; i < scene.GetLength(0); i++) {
+            for (int j = 0; j < scene.GetLength(1); j++) {
+                GameObject temp = Instantiate(Block(scene[i,j]), new Vector3(j * blockWidth, i * blockHeight, 0), Quaternion.identity) as GameObject;
             }
         }
     }
@@ -141,15 +141,15 @@ public class Setup {
                 Debug.Log("Moving Down");
                 location[1] -= 1;
             }
-            char color = scene[location[0]][location[1]];
+            char color = scene[location[0],location[1]];
             if(color.Equals('B')){
                 return false;
             }
             if(color.Equals('G')){
-                player[location[0]][location[1]] = new Block('C');
+                player[location[0],location[1]] = new Block('C');
             }
             if(color.Equals('R')){
-                player[location[0]][location[1]] = new Block('B');
+                player[location[0],location[1]] = new Block('B');
             }
         }
         Debug.Log("Successfully Moved!");
@@ -170,7 +170,7 @@ public class Setup {
             int[] location = player[i];
             location = new Vector2((float)Math.Round(matrix[0].x*player[i].x + matrix[0].y*player[i].y), (float)Math.Round(matrix[1].x*player[i].x + matrix[1].y*player[i].y));
             Debug.Log("Rotating: "+location.x + ", " + location.y);
-            if(scene[location[0]][location[1]].Equals('B')){
+            if(scene[location[0],location[1]].Equals('B')){
                 return false;
             }
         }
