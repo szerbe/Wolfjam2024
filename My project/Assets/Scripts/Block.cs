@@ -301,7 +301,6 @@ public class Block : MonoBehaviour
         foreach(Vector2 v in adjPos){
             foreach(GameObject g in gameObjects){
                 if (v.Equals(g.transform.position)){
-                    Debug.Log("Condition 1 met");
                     switch(this.transform.position.y - g.transform.position.y){
                         case(0):
                             Debug.Log("Condition 2 met");
@@ -310,27 +309,30 @@ public class Block : MonoBehaviour
                                     Debug.Log("Something went wrong");
                                     break;
                                 case(-1):
+                                    GameObject.Destroy(g);
                                     attach("RIGHT", "blueTile.png").GetComponent<Block>().merge();
                                     Debug.Log("Creating right tile");
-                                    GameObject.Destroy(g);
                                     break;
                                 case(1):
-                                    attach("LEFT", "blueTile.png").GetComponent<Block>().merge();
                                     GameObject.Destroy(g);
+                                    attach("LEFT", "blueTile.png").GetComponent<Block>().merge();
                                     break;
                             }
                             break;
                         case(-1):
-                            attach("DOWN", "blueTile.png").GetComponent<Block>().merge();
                             GameObject.Destroy(g);
+                            attach("UP", "blueTile.png").GetComponent<Block>().merge();
                             break;
                         case(1):
-                            attach("UP", "blueTile.png").GetComponent<Block>().merge();
                             GameObject.Destroy(g);
+                            attach("DOWN", "blueTile.png").GetComponent<Block>().merge();
                             break;
                     }
                 }
             }
         }
+    }
+
+    public void unmerge(){
     }
 }
