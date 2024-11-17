@@ -1322,7 +1322,55 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      controlsText.png_0: 768693912072135155
+      controlsText.png_1: 2906841979231509506
+      controlsText.png_10: 2118181109165681633
+      controlsText.png_11: -3420411778955983863
+      controlsText.png_12: 4055899976865623761
+      controlsText.png_13: 5731384407107266715
+      controlsText.png_14: 7314116546887079328
+      controlsText.png_15: 6296427943525987291
+      controlsText.png_16: 7128056488396111048
+      controlsText.png_17: 7261529815498481345
+      controlsText.png_18: -8970498546975133566
+      controlsText.png_19: -1017792127203388333
+      controlsText.png_2: -5658081538155897300
+      controlsText.png_20: -1580244121950433007
+      controlsText.png_21: -3348245487918409193
+      controlsText.png_22: 3578700435030843659
+      controlsText.png_23: 5007000340209093144
+      controlsText.png_24: 6492756251274550379
+      controlsText.png_25: -2560127617559657246
+      controlsText.png_26: 4768054295478684314
+      controlsText.png_27: -2786974752255977067
+      controlsText.png_28: 2571080073863927234
+      controlsText.png_29: -4531006090870681137
+      controlsText.png_3: -1706153206078719239
+      controlsText.png_30: -1422379154608095065
+      controlsText.png_31: 461517622264008055
+      controlsText.png_32: -6673891168758260321
+      controlsText.png_33: -2849458197599706752
+      controlsText.png_34: -796083729388330161
+      controlsText.png_35: 1332839132530379758
+      controlsText.png_36: 1201069861930992613
+      controlsText.png_37: -6616730930584054158
+      controlsText.png_38: 8440243832871354089
+      controlsText.png_39: -5787997229473086280
+      controlsText.png_4: -2209598150596478075
+      controlsText.png_40: 6176938865045291406
+      controlsText.png_41: -1220653582522703717
+      controlsText.png_42: -4333806866348999117
+      controlsText.png_43: 6829682936430328177
+      controlsText.png_44: 2118992664179073580
+      controlsText.png_45: 4337711252123916904
+      controlsText.png_46: 9021689820643943670
+      controlsText.png_47: 4691302684095625928
+      controlsText.png_5: 4521532430543010242
+      controlsText.png_6: -8299938889297181672
+      controlsText.png_7: 3330201806255808068
+      controlsText.png_8: -8520256308388437601
+      controlsText.png_9: 6607933307893818466
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
