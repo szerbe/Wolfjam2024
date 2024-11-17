@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Enter key pressed");
             this.GetComponent<Block>().merge();
         }
+        //Levels 1-5, 0 = Tutorial
+        if(Input.GetKeyDown(KeyCode.Alpha0)||Input.GetKeyDown(KeyCode.Keypad0)){
+            levelInit one = new levelInit(0);
+        }
         if(Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Keypad1)){
             levelInit one = new levelInit(1);
         }
