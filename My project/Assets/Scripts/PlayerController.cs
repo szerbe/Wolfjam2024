@@ -6,8 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private GameObject rotationPoint = null;
+    private static GameObject rotationPoint = null;
     void Start(){
+        if(rotationPoint == null){
+            rotationPoint = GameObject.FindGameObjectWithTag("Player");
+        }
+    }
+
+    public static void setRotationPoint(){
         if(rotationPoint == null){
             rotationPoint = GameObject.FindGameObjectWithTag("Player");
         }
@@ -17,22 +23,24 @@ public class PlayerController : MonoBehaviour
         float vertical = 0.0f;
         char rotate = 'N';
         bool confirm = false;
+        
+
         //Move left
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
+        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && Block.canMove('l')){
             horizontal = -1.0f;
         }
         //Move right
-        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
+        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && Block.canMove('r')){
             horizontal = 1.0f;
         }
 
         //Move up
-        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){
+        if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && Block.canMove('u')){
             vertical = 1.0f;
         }
 
         //Move down
-        if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
+        if((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && Block.canMove('d')){
             vertical = -1.0f;
         }
 
@@ -48,8 +56,39 @@ public class PlayerController : MonoBehaviour
             rotateDir(rotate);
         }
 
-        //Confirm choices (level select, attachment, removal)
+        if(Input.GetKeyDown(KeyCode.R)){
+            levelInit.loadLevelSelect();
+        }
+
         if(Input.GetKeyDown(KeyCode.Return)){
+            // Debug.Log("Enter key pressed");
+            this.GetComponent<Block>().unmerge();
+            this.GetComponent<Block>().merge();
+            if(levelInit.checkKey()){
+                levelInit.loadLevelSelect();
+            }
+        }
+        //Levels 1-5, 0 = Tutorial
+        if(Input.GetKeyDown(KeyCode.Alpha0)||Input.GetKeyDown(KeyCode.Keypad0)){
+            levelInit one = new levelInit(0);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Keypad1)){
+            levelInit one = new levelInit(1);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)||Input.GetKeyDown(KeyCode.Keypad2)){
+            levelInit one = new levelInit(2);
+            // confirm = true;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)||Input.GetKeyDown(KeyCode.Keypad3)){
+            levelInit one = new levelInit(3);
+            // confirm = true;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4)||Input.GetKeyDown(KeyCode.Keypad4)){
+            levelInit one = new levelInit(4);
+            // confirm = true;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha5)||Input.GetKeyDown(KeyCode.Keypad5)){
+            levelInit one = new levelInit(5);
             // confirm = true;
         }
         //Spawn more tiles (debug)
@@ -67,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 this.GetComponent<Block>().attach("UP", "redTile.png");
             }
 
-            Debug.Log("Trying to create a sprite");
+            // Debug.Log("Trying to create a sprite");
         }
         
 
@@ -86,17 +125,24 @@ public class PlayerController : MonoBehaviour
     }
     
     //Rotates the player in a direction, Q for counterclockwise, E for clockwise
-    void rotateDir(char rotate){
-            if(rotate == 'N'){
-                return;
-            }
-            else if(rotate == 'Q'){
-                transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
-                return;
-            }
-            else if(rotate == 'E'){
-                transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
-                return;
-            }
+    public void rotateDir(char rotate){
+        if(rotate == 'N'){
+            return;
         }
+        else if(rotate == 'Q' && Block.canRotate('l')){
+            transform.RotateAround(rotationPoint.transform.position, Vector3.forward, 90);
+            int XPos = (int) Math.Round(transform.position.x);
+            int YPos = (int) Math.Round(transform.position.y);
+            transform.position = new Vector2(XPos, YPos);
+            return;
+        }
+        else if(rotate == 'E' && Block.canRotate('r')){
+            transform.RotateAround(rotationPoint.transform.position, Vector3.forward, -90);
+            int XPos = (int) Math.Round(transform.position.x);
+            int YPos = (int) Math.Round(transform.position.y);
+            transform.position = new Vector2(XPos, YPos);
+            return;
+        }
+    }
+
 }
