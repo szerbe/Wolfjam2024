@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Block : MonoBehaviour
 {
@@ -113,7 +114,7 @@ public class Block : MonoBehaviour
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png
     */
-    public void attach(String dir, String spr){
+    public GameObject attach(String dir, String spr){
         // Debug.Log("Method Called!");
         var GameObject = new GameObject();
         var SpriteRenderer = GameObject.AddComponent<SpriteRenderer>();
@@ -228,6 +229,7 @@ public class Block : MonoBehaviour
         else{
             Debug.Log("Block could not be created" + dir + "of block at " + transform.position);
         }
+        return GameObject;
     }
 
     public static bool canMove(char direction){
@@ -280,5 +282,55 @@ public class Block : MonoBehaviour
             }
         }
         return true;
+    }
+    public List<Vector2> getAdjacentLocs(){
+        List<Vector2> adjLoc = new List<Vector2>();
+        int XPos = (int) transform.position.x;
+        int YPos = (int) transform.position.y;
+        adjLoc.Add(new Vector2(XPos, YPos + 1));
+        adjLoc.Add(new Vector2(XPos, YPos - 1));
+        adjLoc.Add(new Vector2(XPos + 1, YPos));
+        adjLoc.Add(new Vector2(XPos - 1, YPos));
+        return adjLoc;
+    }
+
+    public void merge(){
+        Debug.Log("Attempting merge");
+        List<Vector2> adjPos = getAdjacentLocs();
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("GreenBlock");
+        foreach(Vector2 v in adjPos){
+            foreach(GameObject g in gameObjects){
+                if (v.Equals(g.transform.position)){
+                    Debug.Log("Condition 1 met");
+                    switch(this.transform.position.y - g.transform.position.y){
+                        case(0):
+                            Debug.Log("Condition 2 met");
+                            switch(this.transform.position.x - g.transform.position.x){
+                                case(0):
+                                    Debug.Log("Something went wrong");
+                                    break;
+                                case(-1):
+                                    attach("RIGHT", "blueTile.png").GetComponent<Block>().merge();
+                                    Debug.Log("Creating right tile");
+                                    GameObject.Destroy(g);
+                                    break;
+                                case(1):
+                                    attach("LEFT", "blueTile.png").GetComponent<Block>().merge();
+                                    GameObject.Destroy(g);
+                                    break;
+                            }
+                            break;
+                        case(-1):
+                            attach("DOWN", "blueTile.png").GetComponent<Block>().merge();
+                            GameObject.Destroy(g);
+                            break;
+                        case(1):
+                            attach("UP", "blueTile.png").GetComponent<Block>().merge();
+                            GameObject.Destroy(g);
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
