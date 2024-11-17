@@ -52,6 +52,23 @@ public class levelInit : MonoBehaviour
         var greenBlockTexture = Resources.Load<Texture2D>("Art/Tiles/greenTile.png");
         var wallBlockTexture = Resources.Load<Texture2D>("Art/Tiles/newWallBlock");
         var yellowBlockTexture = Resources.Load<Texture2D>("Art/Tiles/tile2.png");
+
+        if(fileName.Equals("level0.txt")){
+            var blueIntro = Resources.Load<Texture2D>("Art/Text/blueIntro.png");
+            var greenIntro = Resources.Load<Texture2D>("Art/Text/greenIntro.png");
+            var redIntro = Resources.Load<Texture2D>("Art/Text/redIntro.png");
+            var yellowIntro = Resources.Load<Texture2D>("Art/Text/yellowIntro");
+            var controlsText = Resources.Load<Texture2D>("Art/Text/controlsText.png");
+            Vector2 position0;
+
+            gameObject = new GameObject();
+            spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = Sprite.Create(blueIntro, new Rect(0, 0, blueIntro.width, blueIntro.height), new Vector2(0.5f, 0.5f), 64);
+            position0 = gameObject.transform.position;
+            position0.x = 0;
+            position0.y = 0;
+            gameObject.transform.position = position0;
+        }
         Tile tile = new Tile();
         tile.sprite = Sprite.Create(Resources.Load<Texture2D>("Art/Tiles/tile1"), new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
         Vector2 position;

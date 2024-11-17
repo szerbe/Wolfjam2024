@@ -1,0 +1,16 @@
+20 13*
+B B B B B B B B B B B B B B B B B B B B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E G E E E E B:
+B E E E E E E E E C E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
+B B B B B B B B B B B B B B B B B B B B:
