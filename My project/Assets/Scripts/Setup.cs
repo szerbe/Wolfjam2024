@@ -93,13 +93,13 @@ public class Setup {
                 location[1] -= 1;
             }
             char color = scene[location[0],location[1]];
-            if(color.Equals('R')){
-                player[location[0],location[1]] = 'B';
-                player[character[i][0], character[i][1]] = 'E';
-            }
-            if(color.Equals('G')){
-                player[location[0],location[1]] = 'C';
-            }
+            // if(color.Equals('R')){
+            //     player[location[0],location[1]] = 'B';
+            //     player[character[i][0], character[i][1]] = 'E';
+            // }
+            // if(color.Equals('G')){
+            //     player[location[0],location[1]] = 'C';
+            // }
             if(color.Equals('B')||color.Equals('R')||color.Equals('G')){
                 return false;
             }
