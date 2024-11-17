@@ -114,6 +114,7 @@ public class Block : MonoBehaviour
     * @param dir - direction to attach to, "DOWN", "UP", "RIGHT", "LEFT"
     * @param spr - sprite name of sprite to attach, full sprite name before last .png
     */
+    
     public GameObject attach(String dir, String spr){
         // Debug.Log("Method Called!");
         var GameObject = new GameObject();
@@ -334,5 +335,6 @@ public class Block : MonoBehaviour
     }
 
     public void unmerge(){
+        
     }
 }
