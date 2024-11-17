@@ -19,7 +19,10 @@ public class levelInit : MonoBehaviour
         SceneManager.SetActiveScene(newScene);
         GameObject gameObject = new GameObject();
         gameObject.AddComponent<levelInit>();
-        createScene("level" + levelNum);
+        gameObject.AddComponent<Camera>();
+        gameObject.GetComponent<Camera>().tag = "MainCamera";
+        gameObject.GetComponent<Camera>().orthographic = true;
+        createScene("level" + levelNum, gameObject);
     }
 
     void Start(){
@@ -32,7 +35,7 @@ public class levelInit : MonoBehaviour
         Block.UpdateTags();
     }
 
-    void createScene(String fileName){
+    void createScene(String fileName, GameObject obj){
         var scene = new Setup(fileName).getScene();
         GameObject gameObject;
         SpriteRenderer spriteRenderer;
@@ -56,6 +59,8 @@ public class levelInit : MonoBehaviour
         }
         TextAsset textFile = Resources.Load<TextAsset>("Levels/" + fileName);
         String sc = textFile.text;
+        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/4;
+        obj.GetComponent<Camera>().transform.position = new Vector2(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1);
         for(int x = scene.GetLength(0) - 1; x >= 0; x--){
             for(int y = scene.GetLength(1) - 1; y >= 0; y--){
                 switch(scene[x, y]){

@@ -106,4 +106,15 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
+
+    public List<Vector2> getAdjacentLocs(){
+        List<Vector2> adjLoc = new List<Vector2>();
+        int XPos = (int) transform.position.x;
+        int YPos = (int) transform.position.y;
+        adjLoc.Add(new Vector2(XPos, YPos + 1));
+        adjLoc.Add(new Vector2(XPos, YPos - 1));
+        adjLoc.Add(new Vector2(XPos + 1, YPos));
+        adjLoc.Add(new Vector2(XPos - 1, YPos));
+        return adjLoc;
+    }
 }

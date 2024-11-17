@@ -48,15 +48,15 @@ public class Setup {
             }
         }
         
-        for(i = 0; i < scene.GetLength(0); i++){
-            for(j = 0; j < scene.GetLength(1); j++){
-                if(scene[i,j].Equals('C')){
-                    character.Add(new int[]{i,j});
-                    i = scene.GetLength(0);
-                    j = scene.GetLength(1);
-                }
-            }  
-        }
+        // for(i = 0; i < scene.GetLength(0); i++){
+        //     for(j = 0; j < scene.GetLength(1); j++){
+        //         if(scene[i,j].Equals('C')){
+        //             character.Add(new int[]{i,j});
+        //             i = scene.GetLength(0);
+        //             j = scene.GetLength(1);
+        //         }
+        //     }  
+        // }
     }
 
     public char[,] getScene(){
