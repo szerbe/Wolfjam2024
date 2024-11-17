@@ -8,11 +8,11 @@ The theme for Wolfjam this year is "connect", so our game is played by connectin
 
 # Controls #
 
-w - move up
-a - move down
-s - move left
-d - move right
-e - rotate clockwise
-q - rotate counterclockwise
-enter - officializes an action
+w - move up \n
+a - move down\n
+s - move left\n
+d - move right\n
+e - rotate clockwise\n
+q - rotate counterclockwise\n
+enter - officializes an action\n
 press numbers 1-4 for each level
