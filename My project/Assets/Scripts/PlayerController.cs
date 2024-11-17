@@ -6,8 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private GameObject rotationPoint = null;
+    private static GameObject rotationPoint = null;
     void Start(){
+        if(rotationPoint == null){
+            rotationPoint = GameObject.FindGameObjectWithTag("Player");
+        }
+    }
+
+    public static void setRotationPoint(){
         if(rotationPoint == null){
             rotationPoint = GameObject.FindGameObjectWithTag("Player");
         }

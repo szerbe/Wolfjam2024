@@ -29,6 +29,7 @@ public class levelInit : MonoBehaviour
         gameObject.GetComponent<Camera>().tag = "MainCamera";
         gameObject.GetComponent<Camera>().orthographic = true;
         createScene("level" + levelNum, gameObject);
+        PlayerController.setRotationPoint();
     }
 
     void Start(){
@@ -83,12 +84,8 @@ public class levelInit : MonoBehaviour
             position0.y = 0;
             gameObject.transform.position = position0;
         }
-        Tile tile = new Tile();
-        tile.sprite = Sprite.Create(Resources.Load<Texture2D>("Art/Tiles/tile1"), new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-        Vector2 position;
-        Tilemap tilemap1 = new Tilemap();
-        List<Vector3> tiles = new List<Vector3>();
-        List<Tile> ti = new List<Tile>();
+        var tile = Instantiate<Tile>(ScriptableObject.CreateInstance<Tile>());
+        tile.sprite = Sprite.Create(Resources.Load<Texture2D>("Art/Tiles/tile1.png"), new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
         if(playerTexture == null){
             Debug.Log("Player texture failed to load");
         }
@@ -101,13 +98,16 @@ public class levelInit : MonoBehaviour
         if(wallBlockTexture == null){
             Debug.Log("wall texture failed to load");
         }
+        if(tile.sprite == null){
+            Debug.Log("Tile failed to load");
+        }
         TextAsset textFile = Resources.Load<TextAsset>("Levels/" + fileName);
         String sc = textFile.text;
-        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/6;
-        obj.GetComponent<Camera>().transform.position = new Vector3(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1, -10);
+        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/8;
+        obj.GetComponent<Camera>().transform.position = new Vector3(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1, -5);
         for(int x = scene.GetLength(0) - 1; x >= 0; x--){
             for(int y = scene.GetLength(1) - 1; y >= 0; y--){
-                // tilemap1.SetTile(new Vector3Int(x, -y, 0), tile);
+                tilemap.SetTile(new Vector3Int(x, -y, 0), tile);
                 switch(scene[x, y]){
                     case('E'):
                         break;
