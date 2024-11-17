@@ -300,7 +300,7 @@ public class Block : MonoBehaviour
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("GreenBlock");
         foreach(Vector2 v in adjPos){
             foreach(GameObject g in gameObjects){
-                if (v.Equals(g.transform.position)){
+                if (v.Equals(new Vector2(g.transform.position.x, g.transform.position.y))){
                     switch(this.transform.position.y - g.transform.position.y){
                         case(0):
                             Debug.Log("Condition 2 met");
