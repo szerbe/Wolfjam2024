@@ -135,6 +135,7 @@ public class Block : MonoBehaviour
                 if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
                     GameObject.AddComponent<PlayerController>();
                     GameObject.gameObject.tag = ("Attached");
+                    SpriteRenderer.sortingLayerName = "Top";
                 }
 
                 else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
@@ -162,6 +163,7 @@ public class Block : MonoBehaviour
                 if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
                     GameObject.AddComponent<PlayerController>();
                     GameObject.gameObject.tag = ("Attached");
+                    SpriteRenderer.sortingLayerName = "Top";
                 }
 
                 else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
@@ -188,6 +190,7 @@ public class Block : MonoBehaviour
                 if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
                     GameObject.AddComponent<PlayerController>();
                     GameObject.gameObject.tag = ("Attached");
+                    SpriteRenderer.sortingLayerName = "Top";
                 }
 
                 else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
@@ -215,6 +218,7 @@ public class Block : MonoBehaviour
                 if(this.tag.Equals("Player") || this.tag.Equals("Attached")){
                     GameObject.AddComponent<PlayerController>();
                     GameObject.gameObject.tag = ("Attached");
+                    SpriteRenderer.sortingLayerName = "Top";
                 }
 
                 else if(this.tag.Equals("GreenBlock") || this.tag.Equals("RedBlock")){
@@ -335,6 +339,19 @@ public class Block : MonoBehaviour
     }
 
     public void unmerge(){
-        
+        List<GameObject> playerObjects = new List<GameObject>();
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Attached")){
+            playerObjects.Add(g);
+        }
+        playerObjects.Add(GameObject.FindGameObjectWithTag("Player"));
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("RedBlock");
+        foreach(GameObject p in playerObjects){
+            foreach(GameObject g in gameObjects){
+                if (p.transform.position.Equals(g.transform.position)){
+                    GameObject.Destroy(g);
+                    GameObject.Destroy(p);
+                }
+            }
+        }
     }
 }

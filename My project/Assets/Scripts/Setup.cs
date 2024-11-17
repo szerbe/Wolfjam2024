@@ -131,34 +131,34 @@ public class Setup {
     }
 
 
-    // public bool checkKey(){
-    //     int matches = 0;
-    //     if(key.Length != Block.getAttachedBlocks().Count) return false;
-    //     for(int i = 0; i < key.Count(); i++){
-    //         if(key[i].Equals((Block.getAttachedBlocks()).ElementAt(i))){
-    //             matches++;
-    //         }
-    //     }
-    //     return matches == key.Length;
-    //     //hello
-    // }
-
-    public bool isKey(){
-        if(character.Count == key.GetLength(0) && checkKey()){
-            return true;
-        }
-        return false;
-    }
-    public bool checkKey(){
-        for(int i = 0; i < key.GetLength(0); i++){
-            for(int j = 0; j < key.GetLength(1); j++){
-                if(scene[i,j].Equals('c')){
-                    return true;
-                }
+    public static bool checkKey(){
+        int matches = 0;
+        if(key.Length != Block.getAttachedBlocks().Count) return false;
+        for(int i = 0; i < key.Count(); i++){
+            if(key[i].Equals((Block.getAttachedBlocks()).ElementAt(i))){
+                matches++;
             }
         }
-        return false;
+        return matches == key.Length;
+        //hello
     }
+
+    // public bool isKey(){
+    //     if(character.Count == key.GetLength(0) && checkKey()){
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    // public bool checkKey(){
+    //     for(int i = 0; i < key.GetLength(0); i++){
+    //         for(int j = 0; j < key.GetLength(1); j++){
+    //             if(scene[i,j].Equals('c')){
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
     // public char[][] getScene(){
     //     return scene;
     // }

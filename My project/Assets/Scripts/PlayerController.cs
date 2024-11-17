@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Return)){
             Debug.Log("Enter key pressed");
+            this.GetComponent<Block>().unmerge();
             this.GetComponent<Block>().merge();
         }
         if(Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Keypad1)){
