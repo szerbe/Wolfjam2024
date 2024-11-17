@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 using UnityEngine.Tilemaps;
+using Unity.VisualScripting;
+using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 
 public class levelInit : MonoBehaviour
@@ -40,12 +43,21 @@ public class levelInit : MonoBehaviour
         var scene = new Setup(fileName).getScene();
         GameObject gameObject;
         SpriteRenderer spriteRenderer;
+        var grid = new GameObject("Grid").AddComponent<Grid>();
+        var tilemap = new GameObject("Tilemap").AddComponent<Tilemap>();
+        var rend = grid.AddComponent<SpriteRenderer>();
+        tilemap.transform.SetParent(grid.gameObject.transform);
         var playerTexture = Resources.Load<Texture2D>("Art/Tiles/blueTile.png");
         var redBlockTexture = Resources.Load<Texture2D>("Art/Tiles/redTile.png");
         var greenBlockTexture = Resources.Load<Texture2D>("Art/Tiles/greenTile.png");
         var wallBlockTexture = Resources.Load<Texture2D>("Art/Tiles/newWallBlock");
         var yellowBlockTexture = Resources.Load<Texture2D>("Art/Tiles/tile2.png");
+        Tile tile = new Tile();
+        tile.sprite = Sprite.Create(Resources.Load<Texture2D>("Art/Tiles/tile1"), new Rect(0, 0, wallBlockTexture.width, wallBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
         Vector2 position;
+        Tilemap tilemap1 = new Tilemap();
+        List<Vector3> tiles = new List<Vector3>();
+        List<Tile> ti = new List<Tile>();
         if(playerTexture == null){
             Debug.Log("Player texture failed to load");
         }
@@ -64,6 +76,7 @@ public class levelInit : MonoBehaviour
         obj.GetComponent<Camera>().transform.position = new Vector3(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1, -10);
         for(int x = scene.GetLength(0) - 1; x >= 0; x--){
             for(int y = scene.GetLength(1) - 1; y >= 0; y--){
+                // tilemap1.SetTile(new Vector3Int(x, -y, 0), tile);
                 switch(scene[x, y]){
                     case('E'):
                         break;

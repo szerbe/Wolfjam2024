@@ -51,9 +51,15 @@ public class PlayerController : MonoBehaviour
         }
 
         //Confirm choices (level select, attachment, removal)
+        if(Input.GetKeyDown(KeyCode.Space)){
+            levelInit one = new levelInit(1);
+        }
+        if(Input.GetKeyDown(KeyCode.Return)){
+            Debug.Log("Enter key pressed");
+            this.GetComponent<Block>().merge();
+        }
         if(Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Keypad1)){
             levelInit one = new levelInit(1);
-            // confirm = true;
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)||Input.GetKeyDown(KeyCode.Keypad2)){
             levelInit one = new levelInit(2);
@@ -125,14 +131,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public List<Vector2> getAdjacentLocs(){
-        List<Vector2> adjLoc = new List<Vector2>();
-        int XPos = (int) transform.position.x;
-        int YPos = (int) transform.position.y;
-        adjLoc.Add(new Vector2(XPos, YPos + 1));
-        adjLoc.Add(new Vector2(XPos, YPos - 1));
-        adjLoc.Add(new Vector2(XPos + 1, YPos));
-        adjLoc.Add(new Vector2(XPos - 1, YPos));
-        return adjLoc;
-    }
 }
