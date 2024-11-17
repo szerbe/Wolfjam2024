@@ -50,14 +50,17 @@ public class PlayerController : MonoBehaviour
             rotateDir(rotate);
         }
 
-        //Confirm choices (level select, attachment, removal)
-        if(Input.GetKeyDown(KeyCode.Space)){
-            levelInit one = new levelInit(1);
+        if(Input.GetKeyDown(KeyCode.R)){
+            levelInit.loadLevelSelect();
         }
+
         if(Input.GetKeyDown(KeyCode.Return)){
-            Debug.Log("Enter key pressed");
+            // Debug.Log("Enter key pressed");
             this.GetComponent<Block>().unmerge();
             this.GetComponent<Block>().merge();
+            if(levelInit.checkKey()){
+                levelInit.loadLevelSelect();
+            }
         }
         //Levels 1-5, 0 = Tutorial
         if(Input.GetKeyDown(KeyCode.Alpha0)||Input.GetKeyDown(KeyCode.Keypad0)){

@@ -7,13 +7,14 @@ using UnityEngine.Tilemaps;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using System.Linq;
 
 
 public class levelInit : MonoBehaviour
 {
     
     private char[,] scene;
-    private int[,] key;
+    private List<Vector2> key;
     private Vector2 position = Vector2.zero;
 
 
@@ -21,6 +22,7 @@ public class levelInit : MonoBehaviour
         UnityEngine.SceneManagement.Scene newScene = SceneManager.CreateScene("level" + levelNum);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.SetActiveScene(newScene);
+        key = new List<Vector2>();
         GameObject gameObject = new GameObject();
         gameObject.AddComponent<levelInit>();
         gameObject.AddComponent<Camera>();
@@ -31,14 +33,26 @@ public class levelInit : MonoBehaviour
 
     void Start(){
         //Create scene
-        //Create key
         // Setup setup = new Setup(scene, key, position);
     }
 
     void Update(){
         Block.UpdateTags();
+        if(checkKey()){
+            Debug.Log("Congrats");
+            levelInit.loadLevelSelect();
+        }
     }
 
+    public static void loadLevelSelect(){
+        SceneManager.LoadScene("levelSelect");
+        int count = SceneManager.sceneCount;
+        for(int i = 0; i < count; i++){
+            if(!SceneManager.GetSceneAt(i).Equals(SceneManager.GetActiveScene())){
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
+            }
+        }
+    }
     void createScene(String fileName, GameObject obj){
         var scene = new Setup(fileName).getScene();
         GameObject gameObject;
@@ -104,7 +118,7 @@ public class levelInit : MonoBehaviour
                         position = gameObject.transform.position;
                         position.x = x;
                         position.y = -y;
-                        Debug.Log("Creating wall at" + x + ", " + y);
+                        // Debug.Log("Creating wall at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.tag = "Wall";
                         break;
@@ -117,7 +131,7 @@ public class levelInit : MonoBehaviour
                         Vector3 pos = gameObject.transform.position;
                         pos.x = x;
                         pos.y = -y;
-                        Debug.Log("Creating player at" + x + ", " + y);
+                        // Debug.Log("Creating player at" + x + ", " + y);
                         gameObject.transform.position = pos;
                         gameObject.AddComponent<PlayerController>();
                         gameObject.AddComponent<Block>();
@@ -130,7 +144,7 @@ public class levelInit : MonoBehaviour
                         spriteRenderer.sprite = Sprite.Create(redBlockTexture, new Rect(0, 0, redBlockTexture.width, redBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
                         position.x = x;
                         position.y = -y;
-                        Debug.Log("Creating red at" + x + ", " + y);
+                        // Debug.Log("Creating red at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.AddComponent<Block>();
                         gameObject.tag = "RedBlock";
@@ -143,7 +157,7 @@ public class levelInit : MonoBehaviour
                         position = gameObject.transform.position;
                         position.x = x;
                         position.y = -y;
-                        Debug.Log("Creating green at" + x + ", " + y);
+                        // Debug.Log("Creating green at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.AddComponent<Block>();
                         gameObject.tag = "GreenBlock";
@@ -155,9 +169,10 @@ public class levelInit : MonoBehaviour
                         position = gameObject.transform.position;
                         position.x = x;
                         position.y = -y;
-                        Debug.Log("Creating yellow at" + x + ", " + y);
+                        // Debug.Log("Creating yellow at" + x + ", " + y);
                         gameObject.transform.position = position;
                         gameObject.tag = "YellowBlock";
+                        key.Add(new Vector2(x, -y));
                         break;
                 }
             }
@@ -167,5 +182,40 @@ public class levelInit : MonoBehaviour
 
     int[] createScene(int levelNum){
         return new int[1];
+    }
+    
+    public static bool checkKey(){
+        // if(key.Count != Block.getAttachedBlocks().Count) return false;
+        // for(int i = 0; i < key.Count; i++){
+        //     foreach(Vector2 v in Block.getAttachedBlocks()){
+        //         if(key[i].Equals(v)){
+        //             Debug.Log("Counting!");
+        //             matches++;
+        //         }
+        //     }
+        // }
+        int matches = 0;
+        List<GameObject> playerObjects = new List<GameObject>();
+        // Debug.Log("Called");
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Attached")){
+            playerObjects.Add(g);
+        }
+        playerObjects.Add(GameObject.FindGameObjectWithTag("Player"));
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("YellowBlock");
+        if(gameObjects.Count() != playerObjects.Count()){
+            // Debug.Log("False");
+            return false;
+        }
+        foreach(GameObject p in playerObjects){
+            foreach(GameObject g in gameObjects){
+                if (p.transform.position.Equals(g.transform.position)){
+                    // Debug.Log("Count");
+                    matches++;
+                }
+            }
+        }
+        // Debug.Log("Through");
+        return matches == gameObjects.Count();
+        //hello
     }
 }

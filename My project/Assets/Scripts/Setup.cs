@@ -131,17 +131,7 @@ public class Setup {
     }
 
 
-    // public static bool checkKey(){
-    //     int matches = 0;
-    //     if(key.Length != Block.getAttachedBlocks().Count) return false;
-    //     for(int i = 0; i < key.Count(); i++){
-    //         if(key[i].Equals((Block.getAttachedBlocks()).ElementAt(i))){
-    //             matches++;
-    //         }
-    //     }
-    //     return matches == key.Length;
-    //     //hello
-    // }
+    
 
     // public bool isKey(){
     //     if(character.Count == key.GetLength(0) && checkKey()){

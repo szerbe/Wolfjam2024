@@ -241,29 +241,29 @@ public class Block : MonoBehaviour
         for(int i = 0; i < player.Count; i++){
             Vector2 location = player[i];
             if(direction.Equals('l')){
-                Debug.Log("Moving Left!");
+                // Debug.Log("Moving Left!");
                 location.x -= 1;
             }
             if(direction.Equals('r')){
-                Debug.Log("Moving Right!");
+                // Debug.Log("Moving Right!");
                 location.x += 1;
             }
             if(direction.Equals('u')){
-                Debug.Log("Moving Up!");
+                // Debug.Log("Moving Up!");
                 location.y += 1;
             }
             if(direction.Equals('d')){
-                Debug.Log("Moving Down");
+                // Debug.Log("Moving Down");
                 location.y -= 1;
             }
             for(int j = 0; j < walls.Count; j++){
                 if(walls.Contains(location)){
-                    Debug.Log("Cannot move");
+                    // Debug.Log("Cannot move");
                     return false;
                 }
             }
         }
-        Debug.Log("Successfully Moved!");
+        // Debug.Log("Successfully Moved!");
         return true;
     }
 
@@ -280,7 +280,7 @@ public class Block : MonoBehaviour
         foreach(Vector2 pos in curr){
             for(int j = 0; j < walls.Count; j++){
                 if(walls.Contains(pos)){
-                    Debug.Log("Cannot move");
+                    // Debug.Log("Cannot move");
                     gameObject.GetComponent<PlayerController>().rotateDir(direction);
                     return false;
                 }
@@ -300,7 +300,7 @@ public class Block : MonoBehaviour
     }
 
     public void merge(){
-        Debug.Log("Attempting merge");
+        // Debug.Log("Attempting merge");
         List<Vector2> adjPos = getAdjacentLocs();
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("GreenBlock");
         foreach(Vector2 v in adjPos){
@@ -308,15 +308,15 @@ public class Block : MonoBehaviour
                 if (v.Equals(new Vector2(g.transform.position.x, g.transform.position.y))){
                     switch(this.transform.position.y - g.transform.position.y){
                         case(0):
-                            Debug.Log("Condition 2 met");
+                            // Debug.Log("Condition 2 met");
                             switch(this.transform.position.x - g.transform.position.x){
                                 case(0):
-                                    Debug.Log("Something went wrong");
+                                    // Debug.Log("Something went wrong");
                                     break;
                                 case(-1):
                                     GameObject.Destroy(g);
                                     attach("RIGHT", "blueTile.png").GetComponent<Block>().merge();
-                                    Debug.Log("Creating right tile");
+                                    // Debug.Log("Creating right tile");
                                     break;
                                 case(1):
                                     GameObject.Destroy(g);
