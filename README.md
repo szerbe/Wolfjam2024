@@ -14,5 +14,5 @@ s - move left <br/>
 d - move right <br/>
 e - rotate clockwise <br/> 
 q - rotate counterclockwise <br/>
-enter - officializes an action <br/>
+enter - ends an action <br/>
 press numbers 1-4 for each level
