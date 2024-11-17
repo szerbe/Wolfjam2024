@@ -1,10 +1,19 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:My project/Assets/Art/pixil-frame-0.png.meta
 guid: 1e83f2d8d989cd146885a4d3fae2e489
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -3337038689812066966
     second: pixil-frame-0_0
+========
+guid: aefb0edb42223094799e115cf736a649
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3949700936875901270
+    second: bottomLeftnewWallBlock_0
+>>>>>>>> Stashed changes:My project/Assets/Resources/Art/Tiles/bottomLeftnewWallBlock.png.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +105,15 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+<<<<<<<< Updated upstream:My project/Assets/Art/pixil-frame-0.png.meta
       name: pixil-frame-0_0
+========
+      name: bottomLeftnewWallBlock_0
+>>>>>>>> Stashed changes:My project/Assets/Resources/Art/Tiles/bottomLeftnewWallBlock.png.meta
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
+<<<<<<<< Updated upstream:My project/Assets/Art/pixil-frame-0.png.meta
       spriteID: a6d4404fdf470b1d0800000000000000
       internalID: -3337038689812066966
+========
+      spriteID: aaefb70ace7df29c0800000000000000
+      internalID: -3949700936875901270
+>>>>>>>> Stashed changes:My project/Assets/Resources/Art/Tiles/bottomLeftnewWallBlock.png.meta
       vertices: []
       indices: 
       edges: []
