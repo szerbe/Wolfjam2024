@@ -103,7 +103,7 @@ public class levelInit : MonoBehaviour
         }
         TextAsset textFile = Resources.Load<TextAsset>("Levels/" + fileName);
         String sc = textFile.text;
-        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/8;
+        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/7;
         obj.GetComponent<Camera>().transform.position = new Vector3(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1, -5);
         for(int x = scene.GetLength(0) - 1; x >= 0; x--){
             for(int y = scene.GetLength(1) - 1; y >= 0; y--){
