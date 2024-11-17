@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
         float vertical = 0.0f;
         char rotate = 'N';
         bool confirm = false;
+        
+
         //Move left
         if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && Block.canMove('l')){
             horizontal = -1.0f;
