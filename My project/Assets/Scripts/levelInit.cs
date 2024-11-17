@@ -60,8 +60,8 @@ public class levelInit : MonoBehaviour
         }
         TextAsset textFile = Resources.Load<TextAsset>("Levels/" + fileName);
         String sc = textFile.text;
-        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/4;
-        obj.GetComponent<Camera>().transform.position = new Vector2(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1);
+        obj.GetComponent<Camera>().orthographicSize = scene.GetLength(0)/6;
+        obj.GetComponent<Camera>().transform.position = new Vector3(scene.GetLength(0)/4 - 1, -scene.GetLength(1)/4 + 1, -10);
         for(int x = scene.GetLength(0) - 1; x >= 0; x--){
             for(int y = scene.GetLength(1) - 1; y >= 0; y--){
                 switch(scene[x, y]){
@@ -81,12 +81,14 @@ public class levelInit : MonoBehaviour
                     case('C'):
                         gameObject = new GameObject();
                         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-                        spriteRenderer.sprite = Sprite.Create(playerTexture, new Rect(0, 0, playerTexture.width, playerTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        position = gameObject.transform.position;
-                        position.x = x;
-                        position.y = -y;
+                        Sprite sprite = Sprite.Create(playerTexture, new Rect(0, 0, playerTexture.width, playerTexture.height), new Vector2(0.5f, 0.5f), 64);
+                        spriteRenderer.sprite = sprite;
+                        spriteRenderer.sortingLayerName = "Top";
+                        Vector3 pos = gameObject.transform.position;
+                        pos.x = x;
+                        pos.y = -y;
                         Debug.Log("Creating player at" + x + ", " + y);
-                        gameObject.transform.position = position;
+                        gameObject.transform.position = pos;
                         gameObject.AddComponent<PlayerController>();
                         gameObject.AddComponent<Block>();
                         gameObject.tag = "Player";
@@ -96,7 +98,6 @@ public class levelInit : MonoBehaviour
                         gameObject = new GameObject();
                         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
                         spriteRenderer.sprite = Sprite.Create(redBlockTexture, new Rect(0, 0, redBlockTexture.width, redBlockTexture.height), new Vector2(0.5f, 0.5f), 64);
-                        position = gameObject.transform.position;
                         position.x = x;
                         position.y = -y;
                         Debug.Log("Creating red at" + x + ", " + y);
