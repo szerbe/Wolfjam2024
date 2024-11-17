@@ -4,7 +4,7 @@ B E E E E E E E E E E E E E E E E E E B:
 B E E E G G G E E E E E E E E E E E E B:
 B E E E G E E E E E E E E R R E E E E B:
 B E E E G E E E E E E E E R R E E E E B:
-B E E E G E E E E E E E E R R E E E E B:
+B E E E E E E E E E E E E E E E E E E B:
 B E C E E E E E E E E E E E E E E E E B:
 B E E E E E E E E E E E E Y E E E E E B:
 B E E E E E E E E E E G E Y Y Y E E E B:
