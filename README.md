@@ -1,6 +1,6 @@
 # Connect 'EM #
 
-![Static Badge](https://img.shields.io/badge/Contributors%20-%204)
+![Static Badge](https://img.shields.io/badge/Contributors%20-%20four-blue)
 
 
 # Description #
